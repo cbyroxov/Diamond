@@ -8,4 +8,4 @@ This includes:
 - Add custom VAG (Audio Format)
 - Add custom TIM (Image Format) into the logo, etc.
 
-Currently, This program is under development for now. Written in Visual Basic for concept purposes only (for now).
+Currently, This program is under development for now. Written in Visual Basic 6 for concept purposes only (for now).
