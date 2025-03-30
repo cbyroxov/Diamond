@@ -1,1 +1,2 @@
 This project uses Visual Basic 6 although the language is outdated it is meant to be flexible and compatible on old hardware
+Currently at this moment no code is available on this app
