@@ -1,0 +1,1233 @@
+Corruption values for SCPH-1001 [37157331]:
+0x00000: *o
+00814 - Yellow, Green, Red, Black, Blue set addr. from 60 to C0 (trigger by 1E1F0) *o*1
+00818 - Magenta, Red, Blue, Black then repeats with blue bg set addr. from 5C to 6C *o*1
+0081A - Magenta, Yellow, Cyan, Green, Magenta, Yellow, Cyan, Black set addr. from AB to 5B *o*1
+0081C - Yellow tint applied to color bars (varies) set addr. from FF to (FE -> 00, almost no tint -> yellow tinted) *o*1
+00822 - White triangle appeared set addr. from 4F to 3F *o*1
+0082B - White, Yellow, Cyan, Green, White, Yellow, Cyan, Green and green square across the frame set addr. from 31 to 35 *o*1
+0084A - Feels like Color bars became a reversed staircase (except that yellow is not a step) set addr. from 47 to (48, 46 - All the bars are small but equal height.) *o*1
+0085D - Various color bar effect set addr. from 58 to (16 - "Crossed rays", 19 - "Blue triangles", 44 - "Shards", 48 - "Purple-white-cyan shards") *o*1
+00862 - VRAM is copied on the main screen set addr. from AB to 3B *o*1
+00864 - Color bar rays set addr. from 25 to 55 *o*1
+00870 - Color rays set addr. from 25 to 36 *o*1
+0088C - Graphical glitch with color bars set addr. from 05 to F5 *o*1
+0088D - Graphical glitch set addr. from 00 to F0 *o*1
+0088E - Graphical glitch set addr. from 05 to F5 *o*1
+0088F - Graphical glitch set addr. from 24 to F4 *o*1
+008E3 - Does not progress to game set addr. from AF to 45 *o
+
+0x05000: *t
+0556D - Trigger address for 28B77 (if not combined, it can't progress to game) set addr. from 00 to C8 *o
+
+0x06000: *o
+06FFC - Instant load to Game, no intro nor menu nor pslogo needed set addr. from C1 to C3 *o
+
+0x07000: *o
+07009 - Instant load to Game, no intro nor menu nor pslogo needed set addr. from 80 to 00 *o
+0700A - Instant load to Game, no intro nor menu nor pslogo needed set addr. from A5 to 2C *o
+
+0x10000: *o
+1083C - SFC w/o some VRAM set addr. from 1C to 1D *o
+1083E - SFC with weird VRAM set addr. from 47 to 46 *o
+10876 - Sony TM TM set addr. from 56 to 57 *o
+1087A - Weird glitches on shell and on the games set addr. from 57 to 54 *o
+
+0x13000: *o
+13247 - Going to memory card just kills the shell set addr. from 27 to 26 *o
+
+0x14000: *o
+14108 - Color button gradience is different and no controls set addr. from 01 to 41 *o
+1418D - Color button gradience is different and no controls set addr. from CE to CD *o
+14614 - No controls set addr. from 20 to 22 *o
+14694 - Going to main menu resets the console and doesn't go anywhere set addr. from 14 to 15 *o
+
+0x15000: *o
+159BA - Memory card slot 2 wipe set addr. from 01 to 02 *o
+159D8 - Going to memory card menu resets the console and doesn't go anywhere. set addr. from 88 to 58 *o
+
+0x16000: *o
+16598 - Memory card just doesn't get read... set addr. from 25 to 45 *o
+16D5F - No controls set addr. from 1F to 00 *o
+
+0x18000: *o, *c
+18194 - Boots normally, then PSLogo screen and goes to menu and goes to PSLogo screen. set addr. from 0B to 00 *o
+18280 - Alters the main menu color gradience set addr. from FF to FE *varies* *c
+182B6 - Flickering in main menu and does screen remnant overlay set addr. from B5 to B6 *o
+182B7 - Flickering in main menu and does screen remnant overlay set addr. from 26 to C6 *o
+18428 - Screen remnant overlay starts on memory card screen, no color gradience on the buttons set addr. 0E to 25 *o
+18439 - Main Menu GUI flickering set addr. from AE to 5E *o
+18479 - Graphical glitch that scrolls down upon entering main menu without the ball in the bg set addr. from AE to 5E *o
+18499 - Graphical glitch that scrolls down upon entering main menu with the ball in the bg set addr. from AE to 5E *o
+184A9 - Trying to enter Memory card or CD Player kicks you out and return to main menu set addr. from A7 to 57 *o
+18709 - Intro then goes to game (w/ illegal opcode) set addr. from 3B to CB *o
+1872A - No PSlogo screen but with Playstation logo (w/ illegal physical address) set addr. from 01 to 81 *o
+188AA - Resets to PAL for some reason set addr. from BD to C4 *o
+188BC - Triangles are weird set addr. from FF to FE *o
+188C2 - Triangle set addr. from AE to 55 *o
+188C8 - Triangle set addr. from 01 to 10 *o
+18E2A - Main menu is shaking but it shakes minimally set addr from 02 to 62 *o
+18E38 - There's Reddish brown color screen when you boot to main menu set addr. from 21 to 58 *o
+18EF9 - Main menu main spheres color? set addr. from AE to (00 - Red, 23 - White, 29 - Yellow, 32 - Green 42 - Dark red, 72 - Cyan, A0 - Blue) *o
+18F07 - Very bright spheres in main menu (2 spheres thing) set addr. from AF to 44 *o
+18F12 - No circles (the 2 circles in menu) set addr. from A9 to A8 *o
+18F48 - Outer Green (Forward and fast Forward button) sphere (RED) set addr. from 01 to FF *o
+18F50 - Outer Green (Forward and fast Forward button) sphere (GREEN) set addr. from 1A to FF *o
+18F58 - Outer Green (Forward and fast Forward button) sphere (BLUE) set addr. from 0D to FF *o
+18F60 - Inner Green (Forward and fast Forward button) sphere (RED) set addr. from 02 to FF *o
+18F78 - Inner Green (Forward and fast Forward button) sphere (GREEN) set addr. from FF to FF *o
+18F70 - Inner Green (Forward and fast Forward button) sphere (BLUE) set addr. from 8F to FF *o
+
+0x19000: *o, *t
+19000 - Sub main menu sphere (blue) has yellow outer color set addr. from E0 to 40 *o
+19048 - When loading to main menu, there's Red gradience on the left (it goes forever ig) set addr. from 65 to F5 *o
+19050 - Outer Red (Stop button) sphere (RED) set addr. from 2D to FF *o
+19058 - Outer Red (Stop button) sphere (GREEN) set addr. from 01 to FF *o
+19060 - Outer Red (Stop button) sphere (BLUE) set addr. from 01 to FF *o
+19068 - Inner Red (Stop button) sphere (RED) set addr. from FF to FF *o
+19070 - Inner Red (Stop button) sphere (GREEN) set addr. from 01 to FF *o
+19078 - Inner Red (Stop button) sphere (BLUE) set addr. from 01 to FF *o
+19084 - Red sphere has Blue on inner sphere??? set addr. from 28 to FF *o
+190C0 & 190C1 - Weird red sphere shenanigans set addr. from 00 01 to FF 04 *o
+190D0 - Outer Yellow (Pause button) sphere (RED) set addr. from 2D to FF *o
+190D8 - Outer Yellow (Pause button) sphere (GREEN) set addr. from 1E to FF *o
+190E0 - Outer Yellow (Pause button) sphere (BLUE) set addr. from 01 to FF *o
+190E8 - Inner Yellow (Pause button) sphere (RED) set addr. from FF to FF *o
+190F0 - Inner Yellow (Pause button) sphere (GREEN) set addr. from CC to FF *o
+190F8 - Inner Yellow (Pause button) sphere (BLUE) set addr. from 01 to FF *o
+19150 - Outer Yellow (Prev and fast prev button) sphere (RED) set addr. from 2D to FF *o
+19158 - Outer Yellow (Prev and fast prev button) sphere (GREEN) set addr. from 2D to FF *o
+19160 - Outer Yellow (Prev and fast prev button) sphere (BLUE) set addr. from 01 to FF *o
+19168 - Inner Yellow (Prev and fast prev button) sphere (RED) set addr. from FF to FF *o
+19170 - Inner Yellow (Prev and fast prev button) sphere (GREEN) set addr. from FF to FF *o
+19178 - Inner Yellow (Prev and fast prev button) sphere (BLUE) set addr. from 01 to FF *o
+191D0 - Outer Purple Sphere (in the track grid) (RED) set addr. from 17 to FF *o
+191D8 - Outer Purple Sphere (in the track grid) (GREEN) set addr. from 05 to FF *o
+191E0 - Outer Purple Sphere (in the track grid) (BLUE) set addr. from 2D to FF *o
+191E8 - Inner Purple Sphere (in the track grid) (RED) set addr. from 99 to FF *o
+191F0 - Inner Purple Sphere (in the track grid) (GREEN) set addr. from 25 to FF *o
+191F8 - Inner Purple Sphere (in the track grid) (BLUE) set addr. from FF to FF *o
+19250 - The main menu's box (where shuffle, time, etc... in the memory card is) (RED) set addr. from 3E to FF *o
+19254 - The main menu's box (where shuffle, time, etc... in the memory card is) (GREEN) set addr. from 3E to FF *o
+19258 - The main menu's box (where shuffle, time, etc... in the memory card is) (BLUE) set addr. from 8C to FF *o
+19300 - The main menu color background (BLUE) set addr. from 20 to FF *o
+19308 - The main menu color background (RED?) set addr. from 74 to FF *o
+1930C - The main menu color background (GREEN?) set addr. from 75 to FF *o
+194CB - Crashes upon going to main menu (triggers graphical glitch if 3274C is combined) set addr. from 00 to C6 *t*6
+19544 - When loading to main menu, there's random data on the VRAM and crashes set addr. from 80 to 60 *o
+
+0x1D000: *l, *o, *z
+1DAB7 - Intro-Menu-Game with disk inserted set addr. from 8F to A3 *l
+1DB3E - Goes to Main Menu only set addr. from 4E to 3E *o
+1DB4C - Please Insert PlayStation™ CD set addr. from 08 to 00 *o
+1DB51 - Please Insert PlayStation™ CD set addr. from 9D to 01 *z
+1DD57 - Main menu gradient colors changed set addr. from 0C to 35 *o
+
+0x1E000: *o
+1E1F0 - Color bars, Warning: Various emulators doesn't like this corruption. set addr. from 06 to (1D - Graphical Glitch [rare], 8C,F0 - Red and Blue and Black, 8E,F2 - Cyan, Green, Magenta, Red, Blue and Black, 8F,F3 - Artifacts (not related to color bars), 90,F4 - Full screen Color bars, 92,F6 - same effect as 90.) *o
+
+0x22000: *o
+22A51 - Color bars in memory card screen "Blue and Black" set addr. from 6A to FF *o
+
+0x25000: *l, *o
+2545B - Menu Screen is constantly switching from normal to thin monochrome set addr. from 00 to A1 *l
+25466 - Resolution in CD Player constantly changing (might cause weird audio if CD is playing as it's constantly changing from 60 fps to 50 fps) set addr. from 4B to (4D, 83, A7, A9, AA, AE, B7, BC) *o
+256F4 - Color Bars in Menu set addr. from 07 to 20 *o
+257EC - Weird stuff happening in Main menu (graphics) set addr. from 00 to (01->FF, 51, C1) *o
+
+0x26000: *o
+26360 - Cursor hovering over text doesn't largen the text set addr. from 34 to 21 *o
+264ED - Memory card reset set addr. from F7 to 44 *o
+26C27 - Different License Text location? (in CD) set addr. from 3C to 53 *o
+
+0x27000: *j, *o, *z, *a, *s, *n, *jess, *t
+2710A - Does not go to game, only menu set addr. from 84 to 1C *o
+2717C - Weird Logo showing up in Main Menu set addr. from 08 to (02, 00 - same effect *n) *o
+2722E - PSLogo screen is shaking vertically set addr. from 19 to EF *z
+2723A - When PSlogo is appearing, the screen is switching to 85% VRAM view set addr. from 00 to EF *o
+272E9 - On the PSlogo screen, something appeared set addr. from 00 to 18 *z
+2739B - Some progression in the sound in PSLogo and without license text, combining this with 273AD creates "bam" set addr. from 0C to 51 *o
+273AC - Playstation logo control fading (1/2) set addr. from 1E to (FF - repeats 5 times, 0E - Fades halfly) *o
+273AD - PlayStation logo control fading (2/2) set addr. from 00 to (01 - repeats 5 times) *o
+273AF - PlayStation logo repeats infinitely set addr. from 2A to CD *t
+27443 - ™ sign on PS logo screen turns into ® sign set addr. from 11 to 30 *o
+275E0 - License text is weird set addr. from 01 to (00 - *Blank*, 02 - Lcne b    Sn optrEtranetAe ia,03 - csy omt ttnnAri,04 - ceb S prtae A      a *z, 05 - Lsb yp rmA, 06 - c ttnAi, etc... 07->45) *z, *o
+2768C - PSLogo screen something happened set addr. from 88 to 8A (c7, CC) *o
+2769D - Licensed text is kinda flipped? set addr. from 69 to 49 *o
+276AE - PSLogo "P" is gone set addr. from 28 to 81 or 82 *a
+277B4 - Forbidden Image with PSLogo and SCEA turned to NotPS set addr. from 1A to 00 *z
+27892 - PSlogo shows up then some VRAM thing appeared set addr. from A0 to 10 *o
+278A7 - License text font changed set addr. from 24 to 87 *o
+27917 - Weird sounds set addr. from AF to 1C *o
+2797F - SFC and then normal set addr. from 82 to FF *o
+279AC - Bass boosted set addr. from C0 to BD *o
+279AD - Bass boosted set addr. from 48 to 02 *z
+27A2A - Reset with lags set addr. from BD to 56 *o
+27A2B - Reset with Lags set addr. from 27 to 1F *o
+27A49 - Sound becomes louder set addr. from 70 to 79 *o
+27A4E - BAM!!! set addr. from BF to 23 *z
+27A7D - Diamond shows then transition set addr. from 00 to 08 *o
+27A8C - SFC set addr. from 05 to 31 *o
+27A8D - SFC set addr. from 00 to 34 *o
+27A8E - SFC set addr. from 07 to 63 *o
+27A8F - SFC set addr. from 82 to 32 *o
+27A93 - Chimes progression set addr. from AF to 62 *t
+27AA5 - Graphical glitch? also sfc set addr. from 4B to 3C *o
+27AC6 - BAM kind of set addr. from 03 to 00 *o
+27AD0 - SFC set addr. from 74 to 24 *o
+27AD1 - SFC set addr. from 3E to 23 *z
+27AD2 - SFC set addr. from 4A to 32 *o
+27AD4 - Some noise goes quickly set addr. from 08 to 00 *o
+27AEB - SFC set addr. from 0C to 8E *a
+27AF7 - SFC set addr. from 8D to FF *o
+27C04 - Does not progress to game set addr. from 00 to 07 *o*3
+27C06 - Does not progress to game set addr. from 0F to 00 *o*3
+27C28 - Does nothing unless you include 27C06 or 27C04 (Chimes plays weirdly on PSLogo) set addr. from 18 to 00 *o
+27C32 - After whoosh, loud chimes set addr. from 19 to 24 *s
+27C36 - SFC set addr. from 06 to 00 *o
+27C37 - AFter whoosh, no more chimes set addr. from 82 to 8D *s
+27CCA - Instant load to Game, no intro nor menu nor pslogo needed set addr. from BD to 3C *o
+27D05 - Playstation text appears late (does not progress to game) set addr. from 3E to 20 *z
+27D18 - Playstation Screen audio not finished set addr. from 80 to 81 *z
+27D4B - Menu sound remains (kinda weird sounding) set addr. from A4 to A5 *o
+27D5B - Menu sound remains set addr. from A4 to A5 *o
+27D5F - Menu sound remains (Perceptible to Illegal opcodes) set addr. from 24 to 0C | 0E *o
+27E5E - Soft reset set addr. from BD to B4 *o
+27EB2 - Reset set addr. from BD to BC *o
+27EC2 - Reverb Room set addr. from 41 to 42 *o
+27ED4 - Studio Medium reverb set addr. from 80 to 40 *o
+27ED6 - Reverb off set addr. from 02 to (00, 01 - Reverb Room) *o
+27EE0 - List of Reverb set addr. from 70 to (6C - Hall, 68 - Studio Large, 64 - Studio Medium, 60 - Studio Small, 5C - Room, 58 - Reverb off) *o
+27EEB - Reverb Room set addr. from 01 to 12 (14, 15, 17, 19-1C) *o
+27FD7 - Loud Noise (note that 29F12 and 415CA needs to be changed to trigger it) set addr. from 14 to 4A *jess
+27FD8 - Loud Noise (note that 29F12 and 415CA needs to be changed to trigger it) set addr. from F4 to 40 *j
+
+0x28000: *o, *z, *d, *c, *t
+2806A - RVOL 0000:0000 set addr. from 04 to 74 *o
+2807C - Sound starts after triangle appears set addr. from 14 to 44 *o
+28084 - A little bit loud sound set addr. from 08 to 01 *z
+282E8 - Trigger for 282F8 or 282F9 (does nothing w/o 282F8 or 282F9) set addr. from 08 to 0A *o*2
+282E9 - Trigger for 282F8 or 282F9 (does nothing w/o 282F8 or 282F9) set addr. from 80 to 3C *o*2
+282F8 - PFear with strange sound (needs trigger) set addr. from 1C to 1F *o 
+282F9 - PFear with strange sound (needs trigger) set addr. from 00 to 3C *o
+283C9 - MPFear but with PS1 Logo set addr. from 4B to 01 *o
+283D1 - PFear but with PS1 Logo set addr. from 4F to 01 *o
+283D2 - PFear but with Pslogo set addr. from 01 to 21 *o
+28483 - Softer reset? (boots without sound first then with sound, and resetting does that too) set addr. from 03 to 23 or 04 *o
+2849F - Infinite resets set addr. from AF to 98 *c
+284A6 - Instant PSLogo set addr. from 01 to 8B *o
+284EB - Reset set addr. from 03 to 87 *o
+2851C - Red Sony Logo set addr. from 08 to 0A *o
+28522 - Red Sony Logo set addr. from 84 to BE *o
+28544 - Diamond and triangle brightness? (1/2) set addr. from 46 to FF *o
+28545 - Diamond and triangle brightness? (2/2) set addr. from 00 to FF *o
+28558 - Diamond size change set addr. from 00 to 80 & (00 - smallest value, FF - largest value) *o
+28559 - Diamond size change set addr. from 01 to (00 - smaller, 01 - default, 02 - large) *o
+2856F - Small Diamond set addr. from 84 to 3F *o
+28581 - No start transition (kinda behaves like SCPH-1000) set addr. from 80 to EC *t 
+28594 - Splash Screen Red Transition Timing (1/2) set addr. from B4 to FF *o
+28595 - Splash Screen Red Transition Timing (2/2) set addr. from 00 to FF *o
+28598 - Splash Screen Green Transition Timing (1/2) set addr. from B4 to FF *o
+28599 - Splash Screen Green Transition Timing (2/2) set addr. from 00 to FF *o
+285A0 - Splash Screen Blue Transition Timing (1/2) set addr. from B4 to FF *o
+285A1 - Splash Screen Blue Transition Timing (2/2) set addr. from 00 to FF *o
+285B4 - Splash Screen Transition Timing (1/2) set addr. from F0 to FF *o
+285B5 - Splash Screen Transition Timing (2/2) set addr. from 00 to 04 *o
+285FD - Triangles goes smaller and center set addr. from 80 to AA *c
+2867F - Sony logo while booting set addr. from 2A to 40 (0A - Fade in then go to menu/pslogo) *o
+276B0 - Graphical glitches set addr. from 00 to 01 *z
+286E9 - Slow boot set addr. from 79 to 40 *o
+28738 - Red background while triangles is animating set addr. from B4 to FF *o
+2873C - Sony, computer entertainment, ™ logo fade in toggle (like Japanese console) set addr. from 01 to 00 *o
+28747 - Sony logo and computer entertainment text is flashing set addr. from AC to 11 *o
+28762 - Triangles glitched for a second and diamond turned to more orange and no SONY text set addr. from 8B to 00 *z
+28772 - Sony text appear then disappear along with computer entertainment and ™ is messed set addr. from 8B to 00 (01 - The computer entertainment is warped *z) *o*z
+28774 - Screen set addr. from 00 to (50 - Makes the sony go fade in [apply this to 29003 [05] & 298C4 - 58 to make it glitch out the triangles], FF *z
+28775 - Screen set addr. from 61 to 00 *o
+2877E - Sony fade in and graphical glitches on the left set addr. from 8D to (D9 - Blue graphical glitch, A2) *z
+28782 - Computer entertainment flickers (maybe some graphical glitch) doesn't transition to anything set addr. from 01 to 2C *o
+287AD - Screen set addr. from 79 to 45 *o
+287B9 - Slow intro set addr. from 12 to 27 (or diamond shows then transition and halt set addr. from 12 to 06) *z
+287CC - Sony Logo corruption set addr. from 80 to 26 *o
+287E5 - Screen set addr. from 41 to 52 *z
+287E8 - Screen set addr. from 00 to 41 *z
+287F8 - Main Red background in splash screen set addr. from B4 to FF *o
+287FA - Flickering Cyan and Red transition set addr. from 04 to 41 *z
+287FC - Main Green background in splash screen set addr. from B4 to FF *o
+28804 - Main Blue background in splash screen set addr. from B4 to FF *o
+28806 - Colors changes on splash set addr. from 06 to 18 *o
+28888 - Computer entertainment is on the diamond set addr. from 00 to 30 *o
+288AE - No sony logo (but if you include 2CA63 then Sony logo is warped and pinkish) set addr. from 15 to 26 *z
+288D9 - Screen (with crashes) set addr. from 70 to 18 *o
+28901 - No Computer entertainment set addr. from 80 to 9D *z
+28960 - Sony logo (RED) set addr. from 80 to FF *o
+2897C - Sony logo (GREEN) set addr. from 80 to FF *o
+28984 - Sony logo (BLUE) set addr. from 80 to FF *o
+28990 - Computer Entertainment (RED) set addr. from 80 to FF *o
+289AC - Computer Entertainment (GREEN) set addr. from 80 to FF *o
+289B4 - Computer Entertainment (BLUE) set addr. from 80 to FF *o
+289C0 - ™ (RED) set addr. from 80 to FF *o
+289DC - ™ (GREEN) set addr. from 80 to FF *o
+289E4 - ™ (BLUE) set addr. from 80 to FF *o
+289FC - Sony logo's Y position (1/2) set addr. from 50 to *any* *o
+289FD - Sony logo's Y position (2/2) set addr. from 00 to *any* *o
+28A0C - Sony logo's X position (1/2) set addr. from 40 to *any* *o
+28A0D - Sony logo's X position (2/2) set addr. from 01 to *any* *o
+28A0E - Reset when booting game set addr. from 05 to D0 or D1 *o
+28A6C - Computer Entertainment's Y position (1/2) set addr. from 9C to *any* *o
+28A6D - Computer Entertainment's Y position (2/2) set addr. from 01 to *any* *o
+28A7C - Computer Entertainment's X position (1/2) set addr. from 40 to *any* *o
+28A7D - Computer Entertainment's X position (2/2) set addr. from 01 to *any* *o
+28A72 - Computer Entertainment's text is above the Sony logo set addr. from A2 to 23 *c
+28A97 - Sony logo on Computer Entertainment set addr. from 02 to 86 *o
+28ADC - TM logo's Y position (1/2) set addr. from 6D to *any* *o
+28ADD - TM logo's Y position (2/2) set addr. from 01 to *any* *o
+28AEC - TM logo's X position (1/2) set addr. from 60 to *any* *o
+28AEC - TM logo's X position (2/2) set addr. from 01 to *any* *o
+28B57 - Instant PSLogo screen with intro sound set addr. 8F to 16 *o
+28B67 - Instant PSLogo screen with intro sound set addr. 8F to 16 *o
+28B77 - Instant PSLogo screen with intro sound (if combined with 0556D, it will make the console soft reset and lag) set addr. 8F to 16 *t*7
+28BCA - Big Diamond set addr. from C0 to CB or 2C *o
+28C20 - Triangle shenanigans set addr. from F0 to (D0, *others) *o
+28C5D - Diamond and triangle brightness varies set addr. from 00 to (B9 - Most Darkest, BA - Most Brightest) *z
+28C74 - Diamond and triangle is a little bright set addr. from 12 to 0F *z
+28CA7 - Diamond is flickering while left triangle is having seizure set addr. from 00 to 70 *o
+28CE1 - Diamond is flickering yellow and right triangle doesn't exist set addr. from 38 to 9E *t
+28CE8 - Diamond has flickering pink set addr. from 10 to AF *z
+28D27 - Lower part of diamond has black gradience set addr. from 8D to 4D *o
+27D5B - Right part of diamond has black gradience set addr. from 8D to 37 *c
+28DCD - Red Triangles set addr. from C0 to A0 *o
+28DEC - Diamond is flashing on the bottom set addr. from 24 to 99 *d
+28DED - Left side of the diamond is normal (normal ps1 color on psxfin) set addr. from 9E to CB *d
+28DEF - Left side of the diamond is normal (normal ps1 color on psxfin) set addr. from 8F to 76 *d
+28F73 - Left triangle color gradient position changed set addr. from 24 to 54 *o
+28FE8 - Left triangle color gradient is yellow and extra triangles in top left corner set addr. from 21 to 41 *o
+
+0x29000: *o, *j, *z, *s, *k, *t
+29000 - Right triangle is pointing to lower left (also flashing) set addr. from 00 to FF *o
+29003 - Left triangle only (combine with 28774 [50] and 298C4 [58] to make it glitch) set addr. from 00 to 05 *o
+29015 - Instant progress to PSLogo set addr. from 20 to 50 *o
+2918D - Artifacts set addr. from FE to 26 *o
+291D5 - Speed of Triangles set addr. from 44 to (46 - Very slow, 45 - Slow, 44 - Normal 43 - Extremely fast) *o
+291D9 - Speed of Triangles set addr. from 44 to (41 - Extremely slow, 42 - Extremely slow, 43 - Slow, 44 - Normal 45 - Extremely Fast) *o
+291DD - Speed of Triangles set addr. from 1C to (40 - Extremely slow, 41 - Very slow, 42 - Slow, 43 - Fast, 44 - Instant) *o
+291C2 - Reset set addr. from BD to 26 *o
+291ED - Triangle is large and inverted set addr. from 80 to 81 *o
+291F2 - Triangles are interlocked together set addr. from 04 to DB *t
+291FA - Triangle slow set addr. from 84 to 88 *z
+29202 - Triangles are weird set addr. from 0F to 57 *k
+29214 - Triangle flies up set addr. from 83 to 87 *o
+29231 - Triangle set addr. from C8 to 21 *o
+292A9 - Triangles goes up set addr. from 80 to 61 *o
+29316 - Left triangle is on the bottom of the Diamond set addr. from 20 to 00 *z
+2932E - Triangles is backwards with seizure set addr. from 07 to 00 (or 06) *o
+29333 - Triangles is weird and backwards set addr. from 84 to 85 *o
+29354 - Triangle goes away (recipe for triangleception) set addr. from 80 to 7F *z
+29362 - At first, connected triangles and then revert and goes away set addr. from 20 to 50 *o
+2936A - Left triangle goes a little far set addr. from 0B to 16 *s
+2936E - Repeating Triangle loading for 2 minutes set addr. from 0C to 87 *o
+2936F - Illegal opcodes and left triangle glitchy set addr. from 3C to 47 *s
+2946C - Left Triangle weird set addr. from 19 to C4 *o
+29538 - Diamond and left triangle is weird set addr. from 9C to 5C *o
+295E0 - Triangle right is having seizure set addr. from 08 to 69 *o
+29666 - Triangle right is weird set addr. from 07 to C2 *o
+29722 - Triangle right is going for the upper set addr. from 30 to 0D *s
+298A2 - When Triangles went to end point everything disappears and updates with Sony logo set addr. from B0 to 00 (10 - Lines Appear and disappear) *o
+298AA - Some VRAM thing (Screen) set addr. from B4 to 01 *z
+298B8 - Graphical glitch set addr. from 08 to 01 *z
+298B9 - Some Graphical Stuff set addr. from 80 to 34 *o
+298C4 - Graphical glitches due to triangles set addr. from 08 to (00 - Graphical glitch, 01 - Graphical glitch and triangles go away, 07 - different graphical glitch but no transition to game, 09 - Animation repeats, 58 - needs 28774 [50] and, 29003 [05] to trigger *o*4) *o
+2995E - Graphical glitches set addr. from 01 to (13, 33, 53, 73, 93, F3) and 72 for triangles and halt *o
+29A79 - PSlogo slanted to left set addr. from 3F to 80 *o
+29AD3 - Diamond shows and transition then appears and does transitions for some time (slow boot) set addr. from 03 to 33 *o
+29AF2 - PSLogo "S" set addr. from B6 to 86 *o
+29B02 - PSLogo "S" set addr. from B2 to 83 *z
+29B3C - Controls how long the transition from splash screen to PSLogo (higher values = longer transition time) (1/2) set addr. from 0C to FF *o
+29B3D - Controls how long the transition from splash screen to PSLogo (higher values = longer transition time) (2/2) set addr. from 00 to FF *o
+29C48 - PSLogo shaking set addr. from D2 to DD *s
+29C4C - PSLogo's X position (1/2) set addr. from 40 to FF *o
+29C4D - PSLogo's X position (2/2) set addr. from 01 to FF *o
+29C54 - PSLogo's Y position (1/2) set addr. from F0 to FF *o
+29C55 - PSLogo's Y position (2/2) set addr. from 00 to FF *o
+29C5C - PSLogo's Size (1/2) set addr. from 00 to FF *o
+29C5D - PSLogo's Size (2/2) set addr. from 04 to FF *o
+29C65 - PSLogo colors? (greenish and reddish) set addr. from 00 to (01 -> 7F, greenish *o 80 -> FF reddish *o C0 *z) *o*z
+29CA8 - PSLogo light is dim set addr. from CE to 3C *o
+29CD0 - Controls how short the transition during transition to PSLogo (either be Mini PFear at lower values) (1/2) set addr. from 3C to FF *o
+29CD1 - Controls how short the transition during transition to PSLogo (either be Mini PFear at lower values) (2/2) set addr. from 00 to FF *o
+29CD4 - Mini PFear set addr. from 08 to 09 *o
+29D34 - PSLogo appears then disappears set addr. from 01 to 21 *o
+29D6F - Saves the PSLogo transition color (gray screen) set addr. from 0C to (11 *o, 91 *t) *o*t
+29D84 - Pfear set addr. from 08 to A4 *o
+29DA5 - Pfear set addr. from 36 to 03 *o
+29DFB - Artifacts (crashes instantly) set addr. from 01 to 31 *o
+29DFD - PSlogo became diamond and back to normal with tiles set addr. from 49 to 39 *o
+29DFE - Artifacts set addr. from 09 to AF (Might Crash after few seconds.) *o
+29E02 - PSLogo Messed up (crashes instantly) set addr. from 02 to 12 *o
+29E04 - PSLogo diamond tiled and lags set addr. from 23 to 33 *o
+29E0A - Artifacts set addr. from 22 to AF (Crashes, set to 23) *o
+29E14 - Diamond PSLogo set addr. from 23 to 24, 25, 26, 27 *o
+29E21 - PSLogo Diamond tiled with lines set addr. from 60 to 20 *o
+29E3A - Diamond PSLogo set addr. from AD to B8 | AC *o
+29E62 - PSlogo corruption set addr. from 94 to 21 *o
+29E67 - PSlogo corruption set addr. from 26 to 23 *o
+29E77 - PSlogo corruption set addr. from 26 to 23 *o
+29E78 - PSlogo corruption set addr. from 10 to 11 *o
+29E80 - PSlogo corruption set addr. from 14 to 24 *o
+29EA0 - Pslogo set addr. from 21 to 24 *o
+29EA7 - PSlogo corruption set addr. from 02 to 24 *o
+29EB0 - PSLogo corruption set addr. from 21 to 24 *z
+29EB3 - PSLogo corruption set addr. from 02 to 22 *o
+29F06 - PSLogo corruption set addr. from 84 to 54 *o
+29F0C - Green, Blue, Yellow PS logo artifact corruption set addr. from 21 to 35 *o
+29F12 - PFear crash set addr. from A2 to 01 *j
+29F28 - Diamond PSLogo artifacts (various) set addr. from 14 to (00, 15, 16, 17, 18, 19, 1A, 1B, 1C, 1D, 1E, 1F, 20, 21, 22, 23, 24 [crashes]) *o
+29F29 - Diamond PSLogo artifacts (various) set addr. from 00 to (01, 02, 4F [crashes], 50, 52 [crashes], 53 [crashes]) *o
+29F30 - Cyan PSLogo set addr. from 70 to 50 *o
+29F31 - Cyan PSLogo set addr. from 00 to 10 *o
+29F32 - Cyan PSLogo set addr. from AC to AB *o
+29F33 - Cyan PSlogo set addr. from AF to 70 *z
+29F3C - PSlogo corruption set addr. from 24 to (08 *z, 3C *o) *o*z
+29F54 - Cyan PSlogo set addr. from C9 to (C5, C4) *o
+29F7F - Reset set addr. from 3C to 15 *o
+29F90 - PFear set addr. from 80 to FF *o
+29FA0 - PFear set addr. from 80 to 50 *o
+29FA6 - PFear with PSLogo set addr. from 41 to FF *o
+29FF3 - PSlogo has cyan line and red square set addr. from 8C to 85 *o
+29FF4 - PSLogo is dark set addr. from 14 to 11 *o
+29FF6 - PSLogo is bright and it has tiles set addr. from 99 to 69 *o
+29FFF - Mini PFear and PSlogo mess set addr. from 24 to F4 *o
+
+0x2A000: *j, *o, *z, *jess
+2A000 - PSlogo corruption set addr. from 80 to DC *o
+2A086 - PSlogo becomes color boxes set addr. from 09 to 14 *z
+2A0F4 - PSlogo's light is behind and some light tiles appears on the pslogo too (shaders broken) set addr. from FF to 04 *jess
+2A106 - PSLogo has no light set addr. from 05 to 00 *z
+2A11C - PSLogo red part became zigzag set addr. from 14 to 00 (if not 00, it'll be various PSLogo corruptions) *o
+2A346 - Flash of Red in PSlogo screen set addr. from 20 to 22 (or 49 if red background) *o
+2A347 - Dark Red PSlogo screen set addr. from A2 to 22 *o
+2A348 - Dark Green PSlogo screen set addr. from 75 to 25 *o
+2A396 - Gray PSlogo screen set addr. from 09 to 58 *z
+2A3D8 - Pslogo corruption set addr. from 23 to 0E *o
+2AE28 - "Zony Jomputsr Lntsrtownsmsnt || ZJLH" set addr. from 59 to 8C *j
+2AE48 - Random Text on License Text set addr. from 04 to 0B *o
+2AEBE - Japanese Text on License Text set addr. from AD to 26 *o
+2AEC7 - Japanese Text on License Text set addr. from 01 to 8D *o
+
+0x2B000: *o, *a, *s, *v, *z, *t
+2B0A4 - Wtf License text set addr. from 21 to 27 *z
+2B1E9 - §●●● set addr. from 10 to 30 *o
+2B1EA - Multiple License text changes set addr. from 60 to (0B - ####, 0C - Aaaa, 0D - ぎれ ゆ よ よ ゆ さを を を みん よ やれ y よ よ かえ ゆ。 さうえい,  4F - △◇◇◇, 61 - Mjdfotfe, 62 - JP characters) *o
+2B286 - Does not progress to anything. set addr. from B5 to 44 *o
+2B2C4 - License Text is messed up set addr. from C0 to C1 *s
+2B2FB - Text set addr. from 36 to 41 *o
+2B382 - Wall of text (might be the same as 2B383) set addr. from 26 to E1 *s
+2B383 - SSSSSSSSSSSSeeeeeeeeeeeeeeeppppppppptttttttttttttt set addr. fro 26 to CE *a
+2B439 - Text set addr. from C0 to 10 *o
+2B470 - Text set addr. from B6 to 10 *o
+2B491 - Text set addr. from 71 to 24 *o
+2B8B5 - License text says "Licens        e SEn           tAmer" (License Sent Amer) set addr. from 01 to 04 *o
+2B97A - Text with lines set addr. from 02 to 0D *s
+2BC37 - Text set addr. from 00 to 16 *o
+2BCF3 - Text is lines set addr. from 24 to BC *v
+2BE87 - Text is corrupted set addr. from 3C to E9 *t
+2BE9B - License text is |||||||||||||||||||||||||||||||||||||| (if you combine to 2C5EA then it results in weird pattern on the text) set addr. from 01 to 70 *z
+2BF7D - No sony logo, sound is weird set addr. from 00 to 21 *o
+2BFA7 - Blank VRAM set addr. from 0C to 21 *o
+
+0x2C000: *j, *o, *z, *l, *a, *s, *f, *k, *v, *c, *t
+2C000 - Salmon filled color screen and on the middle is data on the VRAM set addr. from 3C to (3F, 3D - Barcode station with LINES) *o 
+2C005 - VRAM is weird (TMComputerEntertainment) set addr. from 80 to 8B *s
+2C014 - VRAM is weird (TMComputerEntertainment) set addr. from 3C to 47 *s
+2C017 - VRAM is weird (TMComputerEntertainment) set addr. from 27 to 32 *s
+2C030 - Sony fades in with blueish white PlayStation text set addr. from 16 to 10 *o
+2C042 - Sony fades in set addr. from A2 to A1 *o
+2C04C - Sony Appearance/fade in set addr. from 18 to 21 *o
+2C0A0 - Graphical mess set addr. from 08 to 47 *t
+2C0A8 - Graphical Glitches set addr. from 04 to 24 *o
+2C0BF - "ayStation" set addr. from A4 to A3 *o
+2C0E2 - No sony logo, "COMPUTE", VRAM is weird, memory card menu freezes set addr. from 78 to C0 *k
+2C16C - Sony fade in in white set addr. from 08 to 38 *o
+2C1A6 - "Rusted" PlayStation text set addr. from 05 to 8F *j
+2C1EE - Something in VRAM set addr. from 88 to 97 *o
+2C229 - Weird colors in Logos (doesn't go to main menu) set addr. from 00 to A7 *o
+2C26F - VRAM looks different (no sony logo, fuzzy license text and mess) set addr. from 24 to 23 *a
+2C414 - Menu is messed up set addr. from FC to (89 - MENUY on the top, A9 - Text, B4, CC - CD Player thing, CF - MENUY) *o
+2C417 - Menu is messed up set addr. from 8F to 00 (44 - No Sony logo, main menu refuses to load, License text is mess *v) *l
+2C458 - Sony text along with others has been cut half or something (SON) set addr. from 04 to 03 *z
+2C472 - "SO" set addr. from 01 to 32 *o
+2C473 - Screen (no effect without 2C472) set addr. from 24 to 22 *o
+2C494 - VRAM mess set addr. from FF to 22 *o
+2C5EA - Sony and Playstation logo and license text is messed up set addr. from 08 to 40 *z
+2C5F0 - PlayStatWE set addr. from 64 to 65 *z
+2C607 - Playstation Text is red and no license text set addr. from 87 to A4 *z
+2C642 - Main Menu VRAM mess set addr. from 00 to 15 *z
+2C64C - License Text (RED) set addr. from 80 to FF *o
+2C658 - License Text (GREEN) set addr. from 80 to FF *o
+2C664 - License Text (BLUE) set addr. from 80 to FF *o
+2C666 - Yellow text in License text set addr. from 07 to 57 *o
+2C66F - Some text blank on Menu set addr. from 87 to 45 *o
+2C694 - License text flickers a bit before disappearing, also it doesn't complete the text set addr. from 96 to 26 *o
+2C814 - Sony and Computer Entertainment is positioned lower set addr. from 5C to 01 *f
+2C81B - Text small and SCEA stretched set addr. from 84 to 85 *z
+2C824 - Text mess set addr. from 2A to 2C *o
+2C841 - Images looks a little weird set addr. from 48 to 00 *z
+2C842 - Image's reversed and you can't go to main menu set addr. from 59 to 00 *z
+2C869 - Texture is kinda messy set addr. from 58 to 19 *s
+2C86E - The Sony logo and license text is big and to the right it goes down set addr. from 80 to 00 *z
+2CA63 - Black Sony and Purple Playstation logo w/o license text set addr. 00 to 1D *z
+2CA7A - Cyan Playstation Logo and Cyan text set addr. from 85 to 1D *z
+2CB2F - Some Gradients on the intro and doesn't progress set addr. from 00 to 18 *z
+2CB40 - Graphical glitch (black things) set addr. from 01 to 04 *c
+2CBA2 - Just only the labels in Main menu set addr. from 65 to 78 *o
+2CBE4 - Some Menu Labels are weird set addr. from 6C to AF *o
+2CE5D -  Memory card loading icon has cursor too set addr. from 70 to 60 *o
+2CEF4 - Text and icons are behind (in main menu) set addr. from 04 to 36 *o
+2CFF7 - Memory card icons are weird and CD Player doesn't have circles set addr. from AD to AE *s
+
+0x2D000: *o, *t
+2D000 - Memory card icons loaded on the top and it's glitchy set addr. from 38 to 53 *o
+2D037 - Memory card icons doesn't animate set addr. from 01 to 23 *o
+2D0FA - Main Menu GUI flickers set addr. from B4 to B1
+2D66E - Text and icons moves like delete animation but repeatly and fast before slowing down into 1 icon and disappearing completely (in main menu) set addr. from 60 to 26 *o
+
+0x2F000: *j, *o, *s, *c, *z, *t
+2F233 - Screen resolution changing and red sony set addr. from 87 to 18 *z
+2F2B2 - Red Sony Logo set addr. from 84 to 0C *o
+2F2EE - Screen shaking horizontal and intensely set addr. from 06 to 07 *o
+2F2EF - Minimal screen shaking set addr. from 24 to 0C *o
+2F2F2 - Screen shaking vertically and intensely set addr. from 0D to FF *o
+2F323 - 640x512 set addr. from 8D to 00 *o
+2F72B - Extremely fast PS1 boot set addr. from 0C to 20 *o
+2F735 - Fearful harmony on ePSXe? (aka. slow transition to PSLogo), also black screen and normal on psxfin set addr. from AE to 8B *s
+2F762 - Sony Appearance set addr. from 0E to 3C *o
+2F7B7 - Cyan set addr. from A1 to 33 *o
+2F7B8 - Purple set addr. from 08 to 32 *o
+2F7C7 - Fading is Colored Green to Purple set addr. from 8F to 20 *o
+2F7CD - Purple boot set addr. from 10 to 61 *c
+2F7D6 - Yellow boot set addr. from 29 to 57 *c
+2F7F0 - Lines set addr. from 01 to 20 *o
+2F8D1 - Fading is Colored Green to Purple and flashing set addr. from 83 to 00 *z
+2F8D3 - Blue colored starting fade set addr. from 8C to 00 *z
+2F913 - Yellow colored starting fade set addr. from 00 to C3 *t
+2F940 - Sony Appearance with reddish transition from startup (doesn't go to game) set addr. from 02 to 58 *o
+2FA37 - There was a cyan flash upon rendering the diamond set addr. from 8C to 97 *s
+2FA42 - Sony Appearance set addr. from 00 to 11 *j
+2FB77 - Purple and green fade transition set addr. from 02 to 00 *o
+2FB87 - Flash set addr. from 02 to (00 - Yellow and blue fade transition *z, 21 *o) *o*z
+2FBC9 - Infinite Flashes set addr. from FF to 0F *o
+2FBD3 - Green Transition set addr. from 02 to A9 *o
+2FBF5 - PFear crash (to trigger PFear Color bars, set 2A106 *z) set addr. from 00 to 21 *z*5
+2FC0D - PFear set addr. from 00 to 79 *o
+2FC1A - Cyan set addr. from 01 to 08 *o
+2FC27 - Red Background set addr. from 00 to 18 *o
+
+0x30000: *j, *o, *z, *s, *c, *a, *t
+30130 - Half of the diamond is normal (normal ps1 color on psxfin) set addr. from 8F to 67 *o
+30136 - Red Triangle w/o diamond set addr. from 64 to 14 *o
+3016E - No triangles but it repeats illegal physical address for 3-4 times set addr. from 6E to EC *o
+301B9 - "Devil-ish" diamond and triangles set addr. from 2C to 2F *o
+301D6 - Dark red Diamond and yellow triangles set addr. from 05 to 06 *o
+301D8 - Pink Triangles set addr. from 38 to 1E *z
+301DC - Color Gradience of the Triangle varies? set addr. from 30 to (2F - Red with Black and extra triangles on the left corner, 3F - Same as 2F but different position of gradient without the extra triangles, 40 - Yellow with a mixture of Red and Black, 41 - Green and Black, 42 - Blue and Black, 43 - Nothing) *o
+301F4 - Color Gradience of the Diamond varies? set addr. from 30 to (2F - Red with Black and extra triangles on the left corner, 3F - Same as 2F but different position of gradient without the extra triangles, 40 - Yellow with a mixture of Red and Black, 41 - Cyan with a mixture of Green and Black, 42 - Blue and Black, 43 - Nothing) *o
+301FB - Black Diamond set addr. from 0C to 4C *o
+301FE - Pink Diamond set addr. from AF to BC (A3-AE, except A5) *o
+30208 - Black Triangles set addr. from 0D to 3D *o
+3023C - Diamond becomes line set addr. from 00 to 20 *o
+3023D - Triangles extend! set addr. from 34 to 35 *o
+3024C - Thin Diamond set addr. from 03 to (42, 43, C2, C3) *o
+302D0 - Triangle with black (recipe of triangleception) set addr. from 30 to 31 *z
+30333 - Backwards triangle set addr. from 00 to C3 *o
+30339 - Yellow triangles but without the diamond set addr. from 20 to 67 *c
+303A9 - Green Triangles set addr. from 34 to 38 *z
+303B1 - Red Triangles set addr. from 3C to 3A *o
+303DC - Whitish Triangles set addr. from 10 to 01 *o
+30428 - Green Diamond set addr. from 00 to 01 (C3 - no illegal opcodes) *o
+3042E - Yellow Diamond set addr. from 07 to F4 | FF - Red Diamond *o
+3043C - Green Diamond set addr. from 03 to C2 *t
+3045D - Dark diamond on the left side set addr. from 04 to 0F *s
+304DD - Triangle sharp set addr. from 00 to 70 *o
+304F4 - Blueish triangles set addr. from F6 to 80 *o
+3052C - Thin Diamond set addr. from 03 to C3 *o
+30599 - Sharp triangles set addr. from 00 to AF *o
+305E6 - Triangle set addr. from 98 to EF *j
+30605 - Triangles set addr. from 4B to CF *o
+30621 - Sharp triangles set addr. from 08 to 13 *s
+30640 - Triangle seeks upward set addr. from 12 to AF *o
+30642 - Triangle seeks upward set addr. from 8F to 1A *z
+30666 - Triangles are halves set addr. from 01 to 02 *o
+30668 - Triangle going small set addr. from 08 to 84 *z
+306F2 - Greenish Triangles set addr. from 89 to 91 *j
+307D8 - Triangles interconnected to each other has a seizure set addr. from 18 to 07 *c
+307EF - Triangles having a seizure set addr. from 27 to 00 *z
+30817 - Sharp Triangles and on the left set addr. from 25 to 00 *o
+30828 - Sharp Triangles (Triangles extended) set addr. from F0 to 30 *c
+3082B - Sharp Triangles and on the top set addr. from 25 to 00 *o
+3083A - Sharp triangles and continues to the right set addr. from 4B to B0 *z
+3083B - Sharp triangles set addr. from 01 to 00 *o
+3085F - Triangles became literal triangles set addr. from 27 to 1A *o
+30876 - Tiny Diamond set addr. from 80 to 93 *o
+308B8 - Diamond looks different set addr. from 40 to 8A *a
+
+0x31000: *o, *z, *f, *s, *jess, *t
+31000 - Gradient color changed set addr. from 3C to 4C (5C - Resets the console while going to main menu) *o
+31107 - Illegal opcodes while doing the random gradience in the VRAM and the buttons are gradience set addr. from 00 to FF *o
+31111 - Some pieces of buttons are replaced by gradience set addr. from 68 to 70 *o
+31139 - No colored buttons set addr. from 01 to 51 *o
+3127A - Main Menu screen takes too long and results in graphical glitches (illegal transfer commands) set addr. from A4 to 3C *o
+31396 - Upon going to Memory card or CD Player crashes the shell set addr. from B0 to 50 *o
+313A0 - Just spheres, no main sphere and labels are gone set addr. from 21 to 51 *o
+3144B - Going to Main menu crashes with the triangles set addr. from 27 to 26 *o
+31470 - Dark Circles in menu set addr. from 84 to 90 *o
+31497 - Main Sphere (Circle) moves to left (no smaller spheres) set addr. from 00 to FF *o
+31498 - Half sphere set addr. from 21 to 24 *o
+31499 - Half sphere set addr. from B0 to 40 *o
+3149A - Main sphere is positioned lower set addr. from E0 to C1 *o
+3149C - Graphical glitches upon going to main menu set addr. from 8C to 8D *o
+3165D - "Dark mode circles" set addr. from 00 to 01 (or 4C, 4F - Much darker circles) *o
+31660 - Pink main sphere set addr. from 88 to 58 *o
+3166C - Circles became "S" set addr. from 04 to C1 *o
+3166D - Circles has a weird pinkish stripes set addr. from 00 to C1 *o
+3166E - Pink Colored Theme for the Circles set addr. from 0E to 1C | 1D -  Spheres are only that's colored. *o
+31675 - Purple colored theme for Spheres set addr. from 00 to 10 *o
+31678 - Graphical Glitches in Main menu set addr. from 05 to 07 (06 - Purple theme for Sphere) *o
+3167A - Purple colored theme for the Circles set addr. from 02 to 00 (04 - purple and cyan and z-fighting) *o
+3167B - Purple theme for the spheres, smaller spheres has stripes set addr. from A2 to 52 *o
+3167C - Yellow theme for Spheres (Color saturation varies by value) set addr. from 02 to 03 *o
+3167F - Yellow colored theme for the Circles set addr. from 90 to 13 *o
+31684 - Multiple Value for the Sphere set addr. from 06 to (00 -> 03 - Yellow, 04 - Orange, 05 - Green, 07 - Strange red, 08 - Yellow, C3 - Yellow but no smaller spheres, C4 - Yellow but Glitched smaller spheres) *o
+31689 - Circle has red stripes set addr. from 00 to 2C *o
+31694 - Spheres has Green stripes set addr. from 01 to 05 *o
+316A0 - Dark stripes in Spheres set addr. from 02 to 42 *o
+316FB - Circles became slices set addr. from 00 to C2 *o
+316FC - Circles became slices set addr. from 03 to 45 *o
+316FD - Circles became mess set addr. from 4B to B0 | AF | 82 | 21 | 84 - Menu w/o circles. *o
+31713 - Sliced spheres set addr. from 01 to 41 *o
+31757 - (Spheres) Feels like projector set addr. from A6 to 46 *o
+31804 - Blank VRAM set addr. from B9 to 03 *z
+31930 - Fast boot set addr. from 02 to C0 *o
+319B9 - No VRAM set addr. from 80 to 5F *jess
+319DC - Does not boot set addr. from 14 to E4 *o
+319F0 - "Barcode station" set addr. from 03 to 00 *f
+31AFF - Salmon filled color and on the middle is something in VRAM set addr. from 87 to 37 *o
+31B0F - TM computer entertainment and PlayStation text has TM set addr. from 87 to 37 *o
+31B1F - TM computer entertainment and PlayStation text has SCEAcens with white line set addr. 87 to 98 *o
+31C45 - Gradient polygons appear to screen set addr. from 00 to 04 *z
+31C99 - VRAM is weird (TMComputerEntertainment) set addr. from 00 to 0B *s
+31CE8 - Texture placement is weird set addr. from 06 to 19 *o
+31CFB - TM computer entertainment set addr. from 24 to 6A *t 
+
+0x32000: *o, *z, *a, *s, *t
+3223E - VRAM is weird (TMComputerEntertainment but white) set addr. from 18 to 23 *s
+323F4 - Fast boot set addr. from 04 to 8F *o
+32461 - VRAM (barcode station but white and other) set addr. from 3C to 00 *o
+32685 - Gradient Triangles spam in the screen (doesn't progress to anything) set addr. from 00 to 01 *z
+3274C - Gradient buttons are replaced with blank set addr. from 24 to 9E *t
+32780 - For some main menu buttons are normal, others is raw gradience set addr. from 58 to 63 *s
+329B4 - Main menu buttons is raw gradients set addr. from 02 to 62 *o
+329DC - Main menu square gradients on the upper left spam set addr. from 08 to 0A (07 - no illegal opcodes, produces same effect *o) *a 
+32B04 - Menu buttons are normal with vram there set addr. from 8F to 67 *o
+32E88 - Main menu buttons are horizontal random lines set addr. from 04 to 0F *s
+
+0x33000: *z, *o, *jess
+331AA - Computer Entertainment is replaced with Sony Logo (also causes graphical glitches in the main menu, more in CD Player with B7 and other values like B2, B3, B4, etc...) set addr. from B6 to (B5 *z, B7 - ™ *o) *z*o
+33265 - No VRAM and some parts in the main menu are broken and halts the system set addr. from 00 to 80 *jess
+33341 - No Sony logo and Playstation Logo is on the top left corner set addr. from 00 to 01 *o
+333F7 - VRAM is taking time to load (otherwise called slow boot) set addr. from 03 to 87 or (w/o opcodes) 04 *o
+
+0x34000: *o
+34193 - PSlogo S with red line set addr. from 00 to 50 *o
+341E4 - Thin PSLogo set addr. from 19 to 17 *o
+342EB - Loud PFear (in some sfc's) with executing illegal opcode from 00000201 to 0000fe01 set addr. from 8F to 3C *o
+348A0 - PFear set addr. from 0B to FF (unrelated: PSLogo bottom view set addr. from 0B to 08) *o
+348A8 - PSlogo "UP" set addr. from 23 to FF *o
+348F6 - Does not load menu for some reason set addr. from E0 to 14 *o
+34901 - PSLogo top view set addr. from 04 to A6 *o
+349BA - PS1 Microscopic Logo set addr. from 81 to 80 *o
+349DB - Menu circle is reduced by 25% set addr. from 04 to 17 *o
+349E6 - Dark circle with 3% lighter one set addr. from 81 to 34 *o
+349E7 - Circle is a little corrupted set addr. from 28 to 23 *o
+
+0x35000: *o, *s
+35B2C - Light of the PSlogo is on the back instead of front set addr. from 48 to 49 *s
+35B4D - Reddish PSlogo set addr. from 80 to AC *o
+
+0x36000: *o, *z, *l
+36777 - PS1 Logo corruption set addr. from 4B to AA *z
+36798 - PS1 Logo corruption set addr. from 0C to 70 (ranges 69 to 7B) *o
+367AA - PS1 Logo corruption set addr. from 2E to 31 *o
+367AB - PS1 Logo corruption set addr. from E9 to E8 *o
+36D1F - Red Sony set addr. from 27 to 14 *o
+36D3D - Noise set addr. from 00 to 16 *l
+
+0x37000: *f, *o, *z, *jess, *t
+37133 - Skip To Game set addr. from 27 to EC *jess
+3737D - Something upon transition to PSLogo (mini PFear) set addr. from 00 to 4C *z
+3737F - Something upon transition to PSLogo (mini PFear) with line set addr. from AF to 34 *o
+37387 - Mini PFear (PSlogo updating) set addr. from 8F to 3F *o
+373C0 - PSlogo corruption with diamond and triangle and weird cobweb text and gradient diamond set addr. from 02 to 23 *o
+373C1 - PSlogo corruption with diamond and triangle and weird cobweb text set addr. from 2E to 24 *o
+373C2 - PSLogo corruption set addr. from 05 to 78 *z
+373C3 - PSlogo corruption with weird thing on the bottom (not in PSLogo screen) set addr. from 00 to 24 *o
+3742A - Sony Logo with crashes set addr. from BD to BC *o
+37463 - Graphics are little weird set addr. from 01 to 51 *o
+37493 - Lines set addr. from 00 to 55 *o
+374FE - Resolution mess and color bit is 24 bit (crashes on pslogo screen) set addr. from 80 to 8C *o
+374FF - Resolution mess but VRAM (crashes on pslogo screen) set addr. from 00 to 01 *o
+3754B - Some VRAM Area is shown on main screen set addr. from 31 to 33 *o
+37570 - Resolution madness set addr. from 30 to 34 *o
+37586 - Screen moving sideways set addr. from 01 to 30 *o
+375B6 - Aspect ratio isn't correct set addr. from 83 to AC (90) *o
+37648 - Monochrome set addr. from 04 to 36 *o
+3769A - Resolution kept switching set addr. from 2D to 4D *o
+376A0 - Screen Moving down set addr. from 20 to 21 *z
+376EE - No start transition (kinda behaves like SCPH-1000) with red transition to PSlogo screen set addr. from AA to 54 *t 
+37704 - Resolution kept switching and going to 24 bit color set addr. from 2C to 25 *o
+3770C - NTSC or PAL mode set addr. from 01 to (00 - PAL, 01 - NTSC) *o
+37710 - Various screen resolution thing set addr. from 03 to (16 - 256x480x16, 22 - 364x480x16, 25 - 512x480x16, 42 - 256x240x16) *o
+37712 - 640x512x16 resolution set addr. from 61 to 21 *o
+37720 - Monochrome video set addr. from 11 to 2C *o
+37721 - 24 bit color (Monochrome) in Main menu set addr. from 00 to 2C *o
+37722 - Monochrome video set addr. from 4B to 2C *z
+37723 - Monochrome video set addr. from 91 to 24 *o
+37760 - 256x240 (1 of 3) set addr. from 04 to 56 *o
+37761 - Screen resolution set to 256x480 set addr. from 00 to 2D | 56 *o
+37762 - 256x240 (3 of 3) set addr. from 42 to 85 *o
+377B8 - 256x480 set addr. from 03 to 00 *z
+37AED - Boots w/o the brightening start (and red transition) set addr. from 00 to A4 *o
+37AF6 - While rendering triangles, it freezes but unfreezed after completing the animation set addr. from 19 to 89 *o
+37B2A - Screen is moving if go to menu set addr. from 63 to 04 *o
+37B48 - Some VRAM can be seen on the right side set addr. from 00 to 32 *o
+37D9C - Menu Screen Glitchy set addr. from 02 to 21 *f
+
+0x38000: *o, *z, *s, *d, *c
+38021 - Green upon going to menu (if 39A0A is set to 97, yellow on boot) set addr. from E4 to 63 *o
+38042 - Some black thing on the left while brightening up set addr. from 04 to 33 *o
+3809C - Sony Sony Computer Computer set addr. from 06 to 56 *o
+38554 - Graphical Glitches and VRAM set addr. from 2C to 15 *z
+3857D - Graphical Glitches set addr. from 04 to 92 *o
+3857E - Colored Sony Logo set addr. from 21 to 81 *o
+385E2 - Some VRAM lines comes up set addr. from 20 to 2B *s
+38714 - VRAM scrolling down (data?) set addr. from 0F to 16 *c
+38732 - Black Sony Text set addr. from 2C to D0 *o
+387A0 - Lines set addr. from 10 to 66 *o
+38AB4 - Monochrome video after booting and returns normal set addr. 24 to C2 (26 - 364x256x24 variant) *o
+38AF9 - PFear Graphical Glitch and crash after few seconds set addr. from FF to 7F *o
+38B13 - Graphical Glitches set addr. from 24 to 4A *o
+38B14 - Something appeared on PSLogo screen set addr. from 04 to 58 *z
+38B5E - No Intro Animation set addr. from 04 to AF | 7D - Something in VRAM viewer *o
+38BF9 - Some artifact or glitchy thing set addr. from 78 to 00 *o
+38BFD - Graphical Glitches set addr. from 78 to 00 *o
+38C8A - SFC with graphical glitches set addr. A6 to 47 (46) *o
+38C92 - Fading stops and lags set addr. from 10 to 00 *z
+38D1C - Glitchy set addr. from 80 to 52 (combine with 38D1D, 38D1E, 38D1F, more glitchiness upon reset) *d
+38D1D - Glitchy set addr. from 60 to 91 *d
+38D1E - Glitchy set addr. from 0C to 20 *d
+38D1F - Glitchy set addr. from 00 to A4 *d
+38D32 - Glitchy Color on Text set addr. from AE to 03 *o
+38D4A - Glitchy Colors on Text set addr. from 2F to C1 *o
+38D8E - Flashing Red and Cyan and triangles are inverted and stuck, no Sony logo, Playstation logo is on upper left, Triangles on PSlogo screen formed "fast forward sign '>>'" and some PSLogo garbage set addr. from 4A to 55 *s
+38EAA - Glitchy set addr. from 08 to 3C *o 
+38EC7 - Lines set addr. from 02 to 01 *o
+38ED2 - No Sony logo and computer entertainment logo (combine it with 38EAA, causes similar effects from 38B5E) set addr. from 0E to 0C *o
+38EDC - Graphical Glitches set addr. from 80 to 20 *o
+38EE2 - Illegal transfer command: d0000000 (graphical glitch) set addr. from 8B to 4B *o
+
+0x39000: *j, *o, *z, *e, *s
+39015 - Sony and computer entertainment disappear before going to PSLogo screen set addr. from 92 to 3C *z
+3903E - Screen glitched for a second set addr. from 01 to B0 *o
+390BA - Very slow progression of the shell (includes Fearful Harmony) set addr. from 12 to 11 *o
+390BB - Very slow progression until PFear set addr. from 3C to 2C *o
+39582 - Sony intro copied in VRam set addr. from A0 to C1 *o
+39584 - Screen is lower than usual set addr. from 21 to 3C *o
+39586 - No PSLogo with the bg gray, Main menu Circles are half?, Main menu color gradients changed, no circles in memory card, messy circles in cd player set addr. from C0 to CB *s
+3969E - VRAM on text set addr. from 0F to 83 *o
+396AC - VRAM on text set addr. from 25 to 19 *o
+3980B - Various PSLogo corruptions set addr. from 8C to 34 (00, 8B... etc.) *o
+39812 - Triangle artifact on upper left corner set addr. from 0F to 43 *o
+39822 - Diamond and triangle appears and disappears and is skipping and crashes set addr. from 23 to 19 (21 - some color artifact with same effect *o, 18 - Artifacts on blank screen with diamond [crashes] *o, 0E - same effect as 18 *o, 0A - Artifact on a white screen *o, 09 - same effect as 19 [similarly] *o, 05 - Artifact on a white screen *o) *e
+3982A - Blue transition and PSlogo is messed set addr. from 82 to 52 *o
+3982B - Diamond streched like a line and Screen effect that probably lasts for 8+ minutes set addr. from 8C to 34 *o
+39832 - Artifacts (varies) set addr. from A2 to (21, 22, 23, 24, 26, 27, 28, 29, 2A, 2B, 2C, 2E, 30, 31, 32, 33, 34, 35-37, 38, 39, 3A, 3B) *o
+3995B - PSLogo corruption (Mini PFear) set addr. from 01 to 59 *o
+39960 - PSLogo corruption (Mini PFear) set addr. from 25 to 07 *o
+399A0 - If combined to 399A1, 399A2 and 399A3, in psxfin it'll open the debug menu otherwise nothing happens set addr. from FF to 44 *o
+399A1 - If combined to 399A0, 399A2 and 399A3, in psxfin it'll open the debug menu otherwise nothing happens set addr. from 00 to 44 *o
+399A2 - If combined to 399A0, 399A1, and 399A3, in psxfin it'll open the debug menu otherwise triangles disappear set addr. from 01 to 44 *o
+399A3 - If combined to 399A0, and 399A1, and 399A2 in psxfin it'll open the debug menu otherwise nothing happens set addr. from 3C to 4C *o
+399B4 - Interesting triangle effect set addr. from 30 to (27 - White Triangles, 2C - Red broken triangles, 2F - White broken triangles, 32 - Transparent triangles, 33 - Also transparent triangles) *o
+399BA - Triangle Corruption set addr. from 99 to 97 *z
+399BC - Triangle is colorful with VRAM (not visible w/o 28C74) set addr. from 08 to 19 *z
+39A04 - Blank background, when transitioning to PSLogo, there's purple gradient triangles set addr. from 28 to 30 *o
+39A06 - Blank background (psxfin), VRAM moving from left to right (epsxe) set addr. from 19 to C0 *z
+39A0A - Blanking the background set addr. from 99 to 97 *o
+39A2B - PSLogo screen artifacts set addr. from 01 to FF *o
+39A2C - Diamond with gradients set addr. from 2C to 3E *z
+39A54 - Interesting half left diamond (the half right doesn't exist) set addr. from 38 to (2C - Red Diamond, 2F - White Diamond, 30 - Left side of the diamond is normal (normal ps1 color on psxfin), 32 - Left side of the diamond is normal (normal ps1 color on psxfin) (little transparent), 33 - Left side of the diamond is normal (normal ps1 color on psxfin) (more transparent)) *o
+39A5A - Diamond (To achieve the result, set addr. the 39A0A to 97 first then) set addr. from 99 to 25 or 97 *o
+
+0x3A000: *j, *o, *l, *z, *s, *jess, *c, *t
+3A08E - Blue & Green static moving set addr. from E0 to CB *j
+3A23F - Mini PFear (PSlogo updating) set addr. from 0C to 24 *o
+3A258 - Mini PFear (PSlogo updating) set addr. from 02 to 3C *o
+3A541 - SFC then Normal set addr. from 60 to 4A *o
+3A762 - Sound Changed set addr. from E2 to 26 *o
+3A7A2 - Chimes SFC set addr. from E2 to 87 *j
+3A7A3 - Channel SFC set addr. from 00 to 51 *j
+3A7D8 - SFC set addr. from 06 to 09 *o
+3A7F4 - Sound changed set addr. from 19 to 77 or 20 *o
+3A7FC - SFC set addr. from 0E to 00 *o
+3A7FE - SFC set addr. from 02 to 28 *j
+3A800 - SFC set addr. from F0 to F1 (EE, F2)*o
+3A808 - SFC set addr. from C0 to C1 (40 *o) *j
+3A809 - SFC set addr. from 38 to 3F *o
+3A80C - Loud SFC set addr. from F4 to AD *o
+3A810 - SFC set addr. from FF to 0F *o
+3A814 - SFC set addr. from 40 to C4 *o
+3A816 - SFC set addr. from 07 to 24 *o
+3A81C - SFC with noise set addr. from 04 to 44 *o
+3A842 - Sound is different set addr. from 07 to 08 *o
+3A859 - Sound set addr. from 18 to AD *o
+3A89A - SFC set addr. from 49 to DF *o
+3A8BD - Feels like No Reverb set addr. from 80 to 54 *o
+3A8BE - Feels like No Reverb set addr. from 0C to 80 *jess
+3A8D8 - Some of the channels doesn't have reverb set addr. from 14 to 78 *o
+3A936 - SFC set addr. from EF to 56 *o
+3A937 - SFC set addr. from 95 to 98 *o
+3A946 - Sound Displacement 1 set addr. from E3 to 54 *o
+3A96B - Audio (Continuous loop) set addr. from 2C to 03 *o
+3A96E - Broken sound thing (instruments doesn't stop) set addr. from 20 to E7 *c
+3A97A - Audio (Continuous loop) set addr. from 4E to 12 *o
+3A9A6 - Sound Displacement 2 set addr. from 08 to 56 *o
+3A9D7 - Sound set addr. from 01 to 41 *o
+3A9DC - Infinite sound set addr. from 08 to 06 (same as 3B20A) *o
+3A9EC - SFC set addr. from 0E to 26 *o
+3A9F0 - SFC set addr. from 0E to D7 (or 26 *o) *o
+3A9F4 - SoundFontCorruption set addr. from E9 to 24 *o
+3A9F5 - SFC set addr. from ED to B7 *t
+3A9FA - SFC set addr. from 42 to 24 *o
+3AA01 - Sound changed set addr. from ED to 7D *o
+3AA04 - SFC set addr. from 23 to F7 or A0 *j
+3AA06 - SFC set addr. from 43 to 36 (or 37, 38, 39, 3A, 3B, 3D, 3E) *j
+3AA07 - SFC set addr. from 00 to 3C *o
+3AA08 - Pitch Adjustment set addr. from 3C to 15 (any values might differ the sound, for example 3D is higher pitched sound or 3B is lower pitched.) *o
+3AA09 - SFC set addr. from 00 to 20 or 88 or 98 *o
+3AA0A - SoundFontCorruption set addr. from C6 to 20 *z
+3AA0B - SoundFontCorruption set addr. from 24 to 26 *o
+3AA0C - SoundFontCorruption set addr. from 00 to 21  *o
+3AA0D - SFC set addr. from 34 to 35 (or 36, 37) (3C -*o) *j
+3AA0F - SFC set addr. from 00 to 10 *z
+3AA11 - SFC set addr. from 34 to 14 *o
+3AA28 - SoundFontCorruption set addr. from 0C to 8C (different values may change the sound) *o
+3AA29 - SoundFontCorruption set addr. from 00 to 01 *o
+3AA2A - SoundFontCorruption set addr. from 01 to 8C (different values may change the sound) | 23 (same effect: 71) *o
+3AA30 - SFC set addr. from 12 to A5 *o
+3AA37 - SFC set addr. from 30 to 27 *o
+3AA3F - Higher pitched sound set addr. from 2D to 8C *o
+3AA42 - Small Detune set addr. from A4 to A5 *j
+3AA43 - SFC set addr. from 30 to 31 *o
+3AA44 - SFC set addr. from 02 to 38 | 4A | 05 *o
+3AA49 - SFC set addr. from 3C to 23 | 21 *o
+3AA50 - SFC set addr. from 0C to 7C or 41 *o
+3AA53 - SFC set addr. from 24 to 54 *o
+3AA56 - SFC set addr. from C1 to 29 *o
+3AA58 - SFC set addr. from 00 to 23 *o
+3AA59 - SFC set addr. from 3C to 23 *o
+3AA5A - SFC set addr. from 08 to 23 *o
+3AA5B - SFC set addr. from 00 to 23 *o
+3AA5C - Weird sound + Chimes increasing set addr. from 40 to 1A *z
+3AA5E - SFC set addr. from 04 to 23 *o
+3AA60 - SFC set addr. from 03 to 04 *o
+3AA62 - SFC set addr. from 07 to 29 *o
+3AA6B - SFC set addr. from 24 to 29 *o
+3AA6C - SFC set addr. from 00 to A0 *z
+3AA84 - SFC set addr. from 40 to 00 *o
+3AA87 - SFC set addr. from 00 to 29 *o
+3AA90 - SFC set addr. from FC to 98 *o
+3AAB0 - SFC set addr. from 23 to ED *o
+3AAC8 - SFC set addr. from E4 to (18 *o, 40 *c) *o *c
+3AACD - SFC set addr. from 48 to 54 *o
+3AAD4 - SFC set addr. from 21 to 29 *o
+3AAD6 - SFC set addr. from 00 to 08 *z
+3AAE0 - SFC chimes set addr. from 0E to 20 *t
+3AAF3 - SFC set addr. from 00 to 45 *o
+3AB0D - Chimes only set addr. from 00 to 15 | 14 - Quiet Chimes only *o
+3AB3A - SFC set addr. from 03 to 87 *o
+3AB40 - SoundFontCorruption (with crashes) set addr. from 01 to A0 *o
+3AB42 - No sound set addr. from 63 to AB *s
+3AB47 - SFC (glass corruption) set addr. from A1 to AC *o
+3AB71 - Chimes set addr. from 80 to 87 *o
+3AB77 - Sound Fading set addr. from 3C to 96 *o
+3AB7B - Loud Chimes set addr. from 84 to 33 *c
+3AB81 - SFC set addr. from 80 to 03 *o
+3AB97 - SFC set addr. from 00 to 54 *o
+3ABA4 - SFC set addr. from 21 to 45 *j
+3ABAA - SFC set addr. from 02 to 72 *o
+3ABB7 - Harmony set addr. from 3C to 70 *o
+3ABB8 - Whoosh only set addr. from FF to 00 *z
+3ABCD - SFC set addr. from C0 to 40 *o
+3ABE1 - SFC set addr. from 59 to 00 or 18 (different values change the sound) | 58 - chimes only with whooosh. *o
+3ABEB - SFC set addr. from 95 to 96 *o
+3ABEC - Glass set addr. from 11 to 01 *o
+3AC07 - SFC set addr. from 8D to 98 *o
+3AC3A - Sound Different set addr. from 18 to 78 *o
+3AC3B - Sound Different set addr. from 8F to 00 *o
+3AC4D - Right channel and sounds a little different set addr. 00 to 9F *o
+3AC4F - Quiet set addr. from 95 to 01 *o
+3AC62 - Broken sound thing (instruments doesn't stop) set addr. from EF to A1 *c
+3AC84 - SFC set addr. from 21 to 11 *j
+3AC85 - SFC set addr. from 50 to 87 *o
+3AC8B - Loud Sound set addr. from 01 to AA *o
+3ACCB - No chimes and whoosh set addr. from 15 to 14 *o
+3AD34 - Chimes set addr. from 08 to 78 *o
+3AD45 - SFC set addr. from 69 to 23 *o
+3AD56 - SFC set addr. from CF to C1 *j
+3AD90 - SFC set addr. from FF to FE or FC (FE -> 00, lowers pitch) *o
+3ADB2 - No chimes on beginning, then loud ding on the pslogo screen set addr. from B3 to 33 *o
+3ADB7 - PFear sound thingy set addr. from 3C to 4A *o
+3ADCA - Loud set addr. from A3 to 26 *o
+3ADE8 - SFC set addr. from DA to 8C *o
+3ADF5 - Sound Changed set addr. from ED to 24 *j
+3ADF7 - Sound changed set addr. from A0 to 3C (can be also addr. 3D) *o
+3AEE0 - SFC set addr. from 21 to 00 *o
+3AEE2 - Higher pitched sound and left doesn't have reverb set addr. from 2B to F2 *c
+3AE6C - SFC (glass corruption) set addr. from B1 to 0F *o
+3AE6F - SFC set addr. from 0C to 7C *o
+3AE7A - Loud Glass set addr. from 52 to 24 *o
+3AEB2 - Chimes changed to glass set addr. from 0D to 6D (00 = real glass corrupt) *o
+3AEB4 - RGC or Real glass corrupt with the normal sounding startup set addr. from 78 to 77 *o
+3AEB7 - Real Glass Corrupt set addr. from 91 to 3C *o
+3AEBA - RGC (SFC) set addr. from 01 to 80 *z
+3AEC7 - SoundFontCorruption set addr. from 83 to 24 *o
+3AECD - SoundFontCorruption or SFC (FZERO SoundRam "Corrupted" bios, "WTF reverb") set addr. from 80 to 24 *z
+3AED3 - SFC set addr. from 01 to 24 *o
+3AED6 - SFC set addr. from 39 to 24 *o
+3AEDA - SFC set addr. from 2A to 31 *o
+3AEE3 - SFC set addr. from 03 to 80 *o
+3AEFE - Sound different set addr. from 4F to 4E *o
+3AF0B - SFC set addr. from 90 to 92 *o
+
+0x3B000: *o, *z, *jess, *t
+3B20A - Audio (Continuous loop) set addr. from 0B to 0D *z
+3B253 - Sound repeating delay and mini pfear (psxfin only because epsxe crash) set addr. 8D to 08 *o
+3B280 - Sound loop set addr. from 0C to ED *o
+3B5DF - Chimes and Base switched places set addr. from 00 to 01 *z
+3B665 - Sound is weird set addr. from 01 to 0E *o
+3B67F - SFC set addr. from 94 to 95 *o
+3B68D - Chimes SFC set addr. from 00 to 50 *o
+3B7CC - SFC set addr. from C2 to 6D| 10 or 11 - W/O illegal opcodes (0C - Jinglestation [same sfc] *jess) *o
+3B87B - SFC set addr. from AF to 80 *o
+3B898 - Muted sound set addr. from 00 to 01 *o
+3BDEB - Reverb off set addr. from AC to 27 *o
+3BE3A - Rvol 5ebc:0101 set addr. from 05 to CB (CC - rvol=5ebc:8d1a, CA - rvol=5ebc:b366, 7C - rvol=5ebc:0c18, C9 - rvol=5ebc:f1e3) *o
+3BEC4 - SFC set addr. from 1C to 0E *o
+3BEC8 - SFC set addr. from 1C to (26 - Chimes are kinda weird *o) E5 *o
+3BF8D - Chimes set addr. from 01 to 6D *t 
+
+0x3C000: *o, *z, *c
+3C06B - SFC set addr. from 0C to FF *o
+3C1CD - SFC set addr. from 80 to 4B *o
+3C2A1 - Chimes set addr. from 01 to 04 *z
+3C2C8 - Partial Sound corruption upon reset set addr. from A0 to 25 *o
+3C2C9 - Partial Sound corruption upon reset set addr. from 97 to 3C *o
+3C2DE - Sound Corruption (noise channels) set addr. from 09 to 19 *o
+3C2DF - Sound Corruption (noise channels) set addr. from 24 to 00 *o
+3C2E4 - Sound Corruption set addr. from 40 to 44 *o
+3C2E5 - Sound Corruption set addr. from C0 to 24 *o
+3C2E8 - Sound Corruption set addr. from 21 to 23 *o
+3C2EB - Sound corruption set addr. from 02 to 12 *o
+3C2FC - Partial Sound corruption upon reset (Chimes are affected) set addr. from 0A to 02 *o
+3C43B - SFC set addr. from AF to 01 *o
+3C4C3 - SoundFontCorruption set addr. from 8F to 21 or 24 *o
+3C4C4 - Chimes and whoosh again set addr. from 24 to 54 *o
+3C5B5 - SoundFontCorruption set addr. from 00 to 84 *z
+3C5B9 -  Chimes and Base switched places kind of set addr. from 00 to 70 *o
+3C5BD - Weird chimes only set addr. from 00 to 40 *o
+3C5C5 - SFC set addr. from 00 to (34, 8B) (different values results in different sound) *o
+3C5CB - Weird chimes only set addr. from 14 to 4C *o
+3C5CE - SFC set addr. from 22 to 23 *c
+3C5DA - SFC set addr. from 42 to 10 *o
+3C73D - Sound changed set addr. from 40 to 68 *o
+3CFBF - Unknown Reverb set addr. from 14 to 00 *o
+
+0x3D000: *o, *c
+3D191 - Unknown Reverb set addr. from 00 to 28 *o
+3D21C - Sound change set addr. from 04 to 3C *o
+3D304 - Chimes set addr. from 00 to 2A *c
+3DA11 - Reverb off set addr. from 80 to 43 *o
+3DFD7 - Sound change set addr. from AF to 58 or 22 *o
+
+0x3E000: *o
+3E335 - No sound (but if you include 3C43B then noise) set addr. from 40 to 00 *o
+
+0x3F000: *o
+3F0DF - Does not progress to game set addr. from AC to EB *o
+
+0x40000: *o
+4065A - Reset set addr. from 01 to F3 *o
+407CB - Forbidden Image set addr. from 14 to FF *o
+408FC - Console resets and doesn't transition to anywhere but if you reset it after it resets on it's own, it progresses to pslogo set addr. from E4 to 00 *o
+40B77 - Reset set addr. from 3C to 15 *o
+
+0x41000: *o, *z
+415CA - No PSLogo set addr. from 6B to 19 *o
+41CA9 - Slow and menu only set addr. from 18 to 01 *o
+41CAA - Slow set addr. from 80 to AC *o
+41E46 - Color bars in Menu set addr. from E0 to (00 - 1F) *z
+41EC7 - Different main menu button gradient set addr. from 34 to 54 *o
+
+0x42000: *o, *z
+4227C - Slow set addr. from 24 to AA *z
+425E2 - Slow set addr. from 2F to 34 *o
+4285D - Delayed Startup set addr. from 00 to D1 *o
+42EE0 - Outer Main Sphere color (RED) set addr. from 00 to FF *o
+42EE1 - Outer Main Sphere color (GREEN) set addr. from 00 to FF *o
+42EE2 - Outer Main Sphere color (BLUE) set addr. from 20 to FF *o
+42EE4 - Inner Main Sphere color (RED) set addr. from 80 to FF *o
+42EE5 - Inner Main Sphere color (GREEN) set addr. from 80 to FF *o
+42EE6 - Inner Main Sphere color (BLUE) set addr. from FF to FF *o
+
+0x4C000: *l
+4C0E8 - Memory card menu moves the save icons to some position and the text set addr. from 01 to 1A *l 
+4C46C - CD Player text moves somewhere set addr. from 00 to 13 *l
+
+0x4E000: *o
+4E5CD - Upon entering Main Menu, screen goes monochrome without the gradients on the buttons, and upon going to the memory card, the exit is triggered going back to Main Menu, and the monochrome color is gone set addr. from 4F to 1F *o
+
+0x50000: *o, *z
+50FC7 - Sound is different set addr. from 00 to FF *z
+50FF0 - Sound is weird set addr. from 02 to 56 (or Only Chimes - 92) *o
+
+0x51000: *o
+51FE0 - SFC set addr. from 00 to 57 *o
+51FE1 - Noise (full noise) set addr. from 00 to 40 *o
+51FE2 - SFC similar to (3C5B5 and 3C5DA) set addr. from 94 to EF *o
+51FE3 - Noise set addr. from 06 to 33 *o
+51FE4 - SFC similar to (3C5B5 and 3C5DA) set addr. from 94 to EF *o
+51FE5 - Noise set addr. from 03 to 43 *o
+
+0x52000: *o
+521F1 - Disable chimes set addr. from 02 to 11 *o
+52211 - No Chimes set addr. from 02 to 31 or 35 *o
+52901 - SFC set addr. from 02 to BF *o
+
+0x59000: *o
+591F1 - Some sound noise (PSX Airlines) set addr. from 02 to FF *o
+
+0x5C000: *o, *j, *t
+5CA52 - Infinite Bass + no chimes SFC set addr. from 00 to 14 *j
+5CA78 - Startup sound pos is broken set addr. from 6E to ED *o
+5CABD - Chimes SFC set addr. from 3E to 45 or 24 *j
+5CB8C - Weird sound set addr. from 00 to 01 or 10 *z
+5CB9A - Halts into PSLogo with fearful harmony like sound set addr. from 00 to 50 *t
+
+0x60000: *o, *z
+60028 - Red Sony with diamond on the bottom set addr. from 01 to 00 *o
+60095 - PSLogo size change set addr. from 17 to 26 (varies, smaller the values results in bigger size and vice versa) *z
+600E8 - Symbols in SCEA set addr. from 60 to DD *o
+600EA - Japanese symbol in SCEA set addr. from 9D to DD *o
+6033D - Text selected on the main menu size set addr. from 14 to (00 - Smallest, 4A - Largest) [note: 4B and up makes it disappear] *o
+606D1 - PSlogo tilting and going closer set addr. from 00 to (00 -> 7F - Tilt right and go from far to close, 80 -> FF - Tilt left and go from close to far) *o
+608D9 - PSlogo becoming P Tower (aka. rotating vertically, 06 -> [other side, 256 bytes after 06] 06) set addr. from 06 to (06 -> 00) *o
+60CC7 - P on the PSlogo gets long set addr. from 0E to (00 -> 7F) *o
+60ECF - PSlogo size change? set addr. from 10 to (00 -> 7F) *o
+
+0x61000: *o, *z
+612A8 - Glitchy set addr. from A0 to A1 *o
+612AE - No transition (Kinda similar to SCPH-1000), VRAM is weird set addr. from 80 to 10 *o
+612B2 - Black on splash screen, PSlogo on the PSlogo screen and VRAM is weird set addr. from 80 to 00 *z
+615FD - SFC set addr. from 10 to BA *z
+61B04 - Unknown Reverb set addr. from 56 to 93 *o
+
+0x7F000: *o
+7FF52 - Region change set addr. from 41 to (44 - Debugging Station, 45 - Europe, 4A - Japanese) *o
+
+----- - Description of corruption set addr. from -- to -- or (optional --) | (optional) *letter*trigger
+
+Edit addr. using hex editor.
+Use SCPH1001 BIOS that has a CRC32 of 37157331!
+All corruptions are tested using pSXfin v1.13. (Other Emulators such as Duckstation, ePSXe, etc., might fail on some corruptions due to illegal opcodes and other error handling that comes with it.)
+
+------------------------------------------------------
+Specials:
+00460-0089F Color bars function
+192F8-19303 Main menu background color (seperate rgb, needs modification)
+2A340-2A34F PSLogo background color (rgb, unused registers, needs modification)
+2C64C-2C664 License text color (seperate rgb)
+42EE0-42EE2 Outer sphere color (rgb)
+42EE4-42EE6 Inner sphere color (rgb)
+42EF0-43F57 Main Menu Image (TIM Format)
+43F58-449E7 Memory Card & CD Player Text (TIM Format)
+449E8-45837 Memory Card Image (TIM Format)
+45838-477F3 Memory Card Text (TIM Format)
+477F4-4885B CD Player Image (TIM Format)
+4885C-4A39B CD Player Text and Icons (TIM Format)
+4A39C-4BEDB Please Insert PlayStation(R) CD text (TIM Format)
+4BEDC-4E6FB Main menu related stuff (should seperate soon)
+4E6FC-4E93B Menu Cursor (TIM Format)
+4E93C-4EC77 Perhaps Memory and CD Player related (should seperate soon)
+4EC78-4EEB7 Menu Cursor Mouse (TIM Format)
+4EEB8-4EF5F Warning message? (perhaps unused?)
+4EF60-4FF3F PlayStation Logo ® (TIM Format)
+4FF40-50F1F PlayStation Logo ™ (TIM Format)
+50F20-50FAF TM text in SCEA (TIM Format)
+50FC0-521DF VAB Header Data (VAB Header Format)
+521E0-5CA3F Sound Data (VAG / VAB Body format)
+5CA40-5CC2F Sound Tables? (Unsure)
+5CC30-5E2EF Sony Logo (TIM Format)
+5E2F0-5FF4F Computer Entertainment Logo (TIM Format)
+5FF50-6001F TM text on logo (TIM format)
+60020-6009F PSlogo color, size ?
+600A0-60EDF License text things, Main Menu bubble and color buttons and PSlogo.
+60390-603AF Color Buttons Gradience
+61150-61DDF Probably some engines like VSYNC and SPU.
+* means not exact address or don't know the actual address
+------------------------------------------------------
+
+39950 - 399FF - weird "44 44 44 4C" in psxfin
+603C0 - 606C3 - unknown
+606C4 - 60ECF - PSLogo and circles
+5CAB0 - 5CC6F Sound changes 
+
+------------------------------------------------------
+Sizes of TIM Files inside the BIOS including Header and Body (follows the rest):
+Sony TIM is: 0x16C0
+Computer Entertainment TIM is: 0x1C60
+TM on the right of diamond is: 0xD0
+TM on the PSLogo screen is: 0x90
+Both cursors have a size of: 0x240
+Playstation logo, both version are: 0xFE0
+Main Menu Image: 0x1068
+Memory Card & CD Player Text: 0xA90
+Memory Card Image: 0xE50
+Memory Card Text: 0x1FBC
+CD Player Image: 0x1068
+CD Player Text and Icons: 0x1B40
+Please Insert PlayStation(R) CD text: 0x1B40
+------------------------------------------------------
+Credits:
+*a - Alexsey_pro (yt: https://www.youtube.com/@Alexsey_Pro-MCEG765Alt, discord id: 980447294455439392)
+*c - ekleipsis (yt: https://www.youtube.com/channel/UC-xFRItMt0fvdfAWeSbMKug, discord id: 1302126230190952489)
+*d - Dairus (yt 1: https://www.youtube.com/@DariusX3133, yt 2: https://www.youtube.com/@DariusDownloadableContent, discord id: 1133128663790014535)
+*e - @lifeless-rbx (yt: https://www.youtube.com/@lifeless-rbx, from https://youtu.be/fN4P6pP9n7k) *Deleted! No archive of video.
+*f - Farhanur (yt: https://www.youtube.com/@Farhanur_Tech, discord id: 936673884932046899)
+*j - John Black (Fenix F) (yt 1: https://www.youtube.com/@john-black1611, yt 2: https://www.youtube.com/@fenix-f-883, linktree: https://linktr.ee/fenix_f, discord id: 509438656260341794)
+*k - kayden00689 (discord id: 1218633652217319436)
+*l - Liderin (yt 1: https://www.youtube.com/@tltmc_yo_cool_skibidi_toilet, yt 2: https://www.youtube.com/@toolazy222, discord id: 1203578405224841229, 981510222289969172)
+*n - Ninevlc (discord id: 1157617133191180320)
+*o - Onitburns (Onesheet6462) (yt: https://www.youtube.com/@Onitburns, discord id: 812182659613589515)
+*s - Sashley (yt: https://www.youtube.com/@Snakes1946-Sashley, discord id: 1188036024325120093)
+*t - tashfin_coolboy (discord id: 884693881696960542)
+*v - Verygudnamethatisnotbad (discord id: 1239654899898122260)
+*z - Fzero (yt: https://www.youtube.com/@FZERO)
+*jess - Alpine Jessica aka Jess (discord id: 220621040219324417, yt: https://youtube.com/@jessdoescorruptions)
+*no$psx - (web 1: https://problemkaputt.de/psx-spx.htm#bioscharactersets, web 2: https://problemkaputt.de/psx-spx.htm#biosmemorymap)
+
+Thanks for all of your contributions! (that is when I plan :D)
+------------------------------------------------------
+Trigger addresses:
+*1 - 1E1F0
+*2 - 282F8 - 282F9
+*3 - 27C28
+*4 - 29003 and 28774
+*5 - 2A106
+*6 - 3274C
+*7 - 0556D
+------------------------------------------------------
+
+Credits to
+FZero,
+John Black (Fenix F),
+Liderin,
+Farhanur (for calling me "Onesheep" and a corruption.),
+lifeless-rbx (https://www.youtube.com/@lifeless-rbx, from https://youtu.be/fN4P6pP9n7k) *deleted!,
+Alexsey_pro,
+eklepsis1502 or eclipse,
+ninevlc,
+Dairus,
+"Verygudnamethatisnotbad",
+"kayden00689",
+"Sashley",
+Jess,
+tashbin_coolboy,
+
+Onesheet6462 (onitburns) for the rest of the corruptions,
+and no$psx for the informations.
+
+------------------------------------------------------
+
+Informations: *no$psx, some assumptions from *o
+  BFC00000h Kernel Part 1  (code/data executed in uncached ROM)
+  BFC10000h Kernel Part 2  (code/data relocated to cached RAM)
+  BFC18000h Intro/Bootmenu (code/data decompressed and relocated to RAM)
+  BFC64000h Character Sets
+
+  BIOS in RAM Address (actual): 0xBFC00000 to 0xBFC7FFFF (otherwise 0x7c00000)
+  Copied BIOS in RAM Address: 0x80030000 to 0x80097ff0 (0x067ff0 in size due to kernel being skipped)
+  Mirrored Memory starts at: 0x80200000, 0x80400000 and 0x80600000
+
+  VAB Header: 0xBFC50FC0 -> 0xBFC521DF Length: 1220x
+  VAB Body (VAG without header): 0xBFC521E0 -> 0xBFC5CA3F Length: A860x
+
+  BIOS Shell is an executable copied from 0xbfc18000 and put into 0x80030000 with the length of 0x67ff0 bytes according to disassembly.
+  TIM headers are 0x40 in size.
+  TIM CLUT works using binary, 31 long word, 5 bit each color, 1 bit for STP, 2 bytes wide.
+  
+------------------------------------------------------
+
+Charsets location: *no$psx
+  BFC64000h  Charset 1 (16x15 pix, letters with accent marks)    (NOT in JAPAN)
+  BFC65CB6h  Garbage   (four-and-a-half reverb tables, ioports, printf strings)
+  BFC66000h  Charset 2 (16x15 pix, various alphabets, english, greek, etc.)
+  BFC69D68h  Charset 3 (16x15 pix, japanese or chinese symbols or so)
+  BFC7F8DEh  Charset 4 (8x15 pix, mainly ASCII letters)
+  BFC7FE6Fh  Charset 5 (8x15 pix, additional punctuation marks)    (NOT in PS2)
+  BFC7FF32h  Version   (Version and Copyright strings)        (NOT in SCPH1000)
+  BFC7FF8Ch  Charset 6 (8x15 pix, seven-and-a-half japanese chars) (NOT in PS2)
+  BFC80000h  End       (End of 512kBYTE BIOS ROM)
+
+-----------------------------------------------------
+SCPH-5903's Kernel patch on 0x06FF0:
+What does it do?: Launch shell on 0xbfc80000.
+Format: Address: *before* -> *patch*
+
+    0x06FFC: C1 -> C8
+    0x07009: 80 -> 00
+
+-----------------------------------------------------
+
+Where to Corrupt:
+  The BIOS should only be corrupted between 0xbfc18000 -> 0xbfc80000.
+  Should be anywhere, take notes of what it does.
+
+------------------------------------------------------
+How to use and some info:
+   This corruption values document should be used in a hex editor.
+   In HxD, press CTRL+G and enter the values on the beginning of a corruption value.
+   Then for example "61B04 - Unknown Reverb set addr. from 56 to 93 *o", the first value (56) is the original one and the second value (93) is the modified value, the *o (*letter) is the credit whoever made the corruption.
+   The format is Address - Description set addr. from *default* to *changed value* *letter
+
+------------------------------------------------------
+
+Note: (As of December 26, 2024) I have put the credits to remaining ones that doesn't have (*letter) yet.
+But the actual author who made the corruptions is forgotten exactly, so it'll be replaced with (*o). 
+(As of January 18, 2025) I will put more yt channel links to credits, and including linktree.
+(As of January 21, 2025) I will put version numbering starting at 1.4.1.
+
+------------------------------------------------------
+Todo: (Legend: 🗴 - Not done, ✓- Done)
+🗴 (Not Done) - Find the color code for the diamond and triangles
+✓ (Done) - Find the color code for the blue box thing in the main menu (04/08/2025)
+✓ (Done, but needs modification to the BIOS) - Find the color code for the blue background in the main menu (04/08/2025, 04/21/2025)
+✓ (Done, but needs modification to the BIOS) - Find the color code for the background of the PSLogo screen (04/23/2025)
+✓ - (Done) Find color code for the main spheres (01/20/2025)
+✓ - (Done) Find color code for the CD Player spheres (04/27/2025)
+✓ - (Done) Find color code for the main menu gradience (12/2024, unknown exact date)
+🗴 - (Not Done, in progress, needs modification to the BIOS) Find color code for the splash screen (04/23/2025)
+✓ - (Done) Sorted from recent date to 0x00000 to 0x7FFFF... (03/03/2024)
+✓ - (Done) Finding PSLogo variables thing (05/02/2025)
+------------------------------------------------------
+Version: 1.5.12
+Created: 08/18/2023 16:20 +8
+Updated: 05/04/2025 22:03 +8
