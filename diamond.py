@@ -39,7 +39,7 @@ class Diamond(wx.Frame):
 		ID      - Used by the program to identify what options are being set
 		Label   - Text displayed on the window for each option
 		Type    - The type of option it is (e.g. radio button, check button, text input, etc.)
-		Options - What options are given to the user, if applicable
+		Choices - What options are given to the user, if applicable
 		Values  - Keeps track of the actual values entered by the user
 		'''
 		self.BIOSproperties = {
@@ -48,14 +48,14 @@ class Diamond(wx.Frame):
 					"ID":      "42EE0",
 					"Label":   "Outer Main Sphere Colour",
 					"Type":    "Check",
-					"Options": ["Red", "Green", "Blue"],
+					"Choices": ["Red", "Green", "Blue"],
 					"Values":  [wx.CHK_UNCHECKED, wx.CHK_UNCHECKED, wx.CHK_UNCHECKED]
 				},
 				{
 					"ID":      "42EE4",
 					"Label":   "Inner Main Sphere Colour",
 					"Type":    "Check",
-					"Options": ["Red", "Green", "Blue"],
+					"Choices": ["Red", "Green", "Blue"],
 					"Values":  [wx.CHK_UNCHECKED, wx.CHK_UNCHECKED, wx.CHK_UNCHECKED]
 				}
 			],
@@ -64,6 +64,10 @@ class Diamond(wx.Frame):
 			"Category 4": [],
 			"Category 5": []
 		}
+		
+		#Holds the name of the currently-selected category
+		# so that functions can utilize it.
+		self.currentCategory = None
 		
 		#Wrapper sizer for everything
 		self.wrapperSizer = wx.BoxSizer(wx.VERTICAL)
@@ -81,7 +85,7 @@ class Diamond(wx.Frame):
 		categoryPanel = wx.Panel(self)
 		categoryChoice = wx.Choice(categoryPanel, 
 								   choices=list(self.BIOSproperties.keys()),
-								   size=wx.Size(450, 20))
+								   size=wx.Size(450, 25))
 		self.wrapperSizer.Add(categoryPanel, 
 		                      border=5, 
 							  flag=wx.TOP|wx.ALIGN_CENTRE_HORIZONTAL) #Flag aligns and adds margin on top
@@ -105,7 +109,7 @@ class Diamond(wx.Frame):
 		self.wrapperSizer.SetSizeHints(self)
 		
 		#Add menu bar
-		self.make_menu_bar()
+		#self.make_menu_bar()
 		
 		
 	def category_change(self, event):
@@ -115,17 +119,30 @@ class Diamond(wx.Frame):
 		#Clear options panel for new options
 		self.optionsSizer.Clear(True)
 		
+		#Set new category choice
+		self.currentCategory = event.GetString()
+		
 		#Now, use event data to make new options
-		for option in self.BIOSproperties[event.GetString()]:
-			print(option)
+		for optionIndex, option in enumerate(self.BIOSproperties[event.GetString()]):
 			if option["Type"] == "Check": #A checkbox option
-				#Box/sizer to surround checkboxe
+				#Box/sizer to surround checkboxes
 				tempSizer = wx.StaticBoxSizer(wx.HORIZONTAL, self, option["Label"])
 				self.optionsSizer.Add(tempSizer, border=5, flag=wx.TOP)
 				
-				#Checkboxes
-				for checkbox in option["Options"]:
-					tempCheckBox = wx.CheckBox(self, label=checkbox)
+				#The actual checkboxes
+				for checkBoxIndex, name in enumerate(option["Choices"]):
+					tempCheckBox = wx.CheckBox(self, label=name)
+					
+					#Set checkboxes to correct values
+					tempCheckBox.SetValue(option["Values"][checkBoxIndex])
+					
+					#Allow checkboxes to store values
+					self.Bind(
+						wx.EVT_CHECKBOX, 
+						lambda e, f={"Option": option, "CheckBoxIndex": checkBoxIndex, "OptionIndex": optionIndex}: self.update_BIOS_property(e, f), 
+						tempCheckBox
+					)
+					
 					tempSizer.Add(tempCheckBox)
 		
 		#Calling this forces the window to recalculate all sizes
@@ -135,11 +152,27 @@ class Diamond(wx.Frame):
 		#Fit window to size of sizer
 		self.wrapperSizer.SetSizeHints(self)
 		
+		
+	def update_BIOS_property(self, event, extraData):
+		"""
+		Called whenever a UI element updates a BIOS property.
+		"""
+		#Decide what type of option this is, then update accordingly
+		if extraData["Option"]["Type"] == "Check":
+			if event.IsChecked():
+				self.BIOSproperties[self.currentCategory][extraData["OptionIndex"]]["Values"][extraData["CheckBoxIndex"]] = wx.CHK_CHECKED
+			else:
+				self.BIOSproperties[self.currentCategory][extraData["OptionIndex"]]["Values"][extraData["CheckBoxIndex"]] = wx.CHK_UNCHECKED
+		
+		else:
+			raise ValueError(f"Attempted to update BIOS property of an unknown option type {extraData['Option']['Type']}.")
+		
+		
 	def make_menu_bar(self):
 		"""
 		Makes the menu bar for the application.
 		"""
-		print("Not implemented yet!")
+		raise NotImplementedError("Diamond's menu bar has not yet been implemented.")
 		
 		
 	def on_about(self, event):
