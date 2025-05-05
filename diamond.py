@@ -40,6 +40,7 @@ class Diamond(wx.Frame):
 		Label   - Text displayed on the window for each option
 		Type    - The type of option it is (e.g. radio button, check button, text input, etc.)
 		Options - What options are given to the user, if applicable
+		Values  - Keeps track of the actual values entered by the user
 		'''
 		self.BIOSproperties = {
 			"0x42000 - Main Sphere Colours": [
@@ -47,13 +48,15 @@ class Diamond(wx.Frame):
 					"ID":      "42EE0",
 					"Label":   "Outer Main Sphere Colour",
 					"Type":    "Check",
-					"Options": ["Red", "Green", "Blue"]
+					"Options": ["Red", "Green", "Blue"],
+					"Values":  [wx.CHK_UNCHECKED, wx.CHK_UNCHECKED, wx.CHK_UNCHECKED]
 				},
 				{
 					"ID":      "42EE4",
 					"Label":   "Inner Main Sphere Colour",
 					"Type":    "Check",
-					"Options": ["Red", "Green", "Blue"]
+					"Options": ["Red", "Green", "Blue"],
+					"Values":  [wx.CHK_UNCHECKED, wx.CHK_UNCHECKED, wx.CHK_UNCHECKED]
 				}
 			],
 			"Category 2": [],
@@ -62,21 +65,20 @@ class Diamond(wx.Frame):
 			"Category 5": []
 		}
 		
-		#Wrapper panel for everything
-		self.wrapperPanel = wx.Panel(self)
+		#Wrapper sizer for everything
 		self.wrapperSizer = wx.BoxSizer(wx.VERTICAL)
-		self.wrapperPanel.SetSizer(self.wrapperSizer)
+		self.SetSizer(self.wrapperSizer)
+		self.SetBackgroundColour(wx.Colour(255, 255, 255))
 		
 		#Add banner image
-		bannerPanel = wx.Panel(self.wrapperPanel)
-		#bannerPanel.SetOwnBackgroundColour(wx.Colour(255, 0, 0))
+		bannerPanel = wx.Panel(self)
 		bannerBitmap = wx.Bitmap("banner.bmp", type=wx.BITMAP_TYPE_BMP)
 		bannerImage = wx.StaticBitmap(bannerPanel, wx.ID_ANY, bannerBitmap)
 		self.wrapperSizer.Add(bannerPanel, flag=wx.ALIGN_CENTRE_HORIZONTAL) #Flag aligns banner horizontally
 		
 		#Present options for user to choose from 
 		# (i.e. which properties of the BIOS to change)
-		categoryPanel = wx.Panel(self.wrapperPanel)
+		categoryPanel = wx.Panel(self)
 		categoryChoice = wx.Choice(categoryPanel, 
 								   choices=list(self.BIOSproperties.keys()),
 								   size=wx.Size(450, 20))
@@ -91,16 +93,13 @@ class Diamond(wx.Frame):
 		self.optionsSizer = wx.BoxSizer(wx.VERTICAL)
 		
 		#Temp panel for welcome info
-		self.optionsPanel = wx.Panel(self.wrapperPanel)
-		self.optionsSizer.Add(self.optionsPanel)
+		optionsPanel = wx.Panel(self)
+		self.optionsSizer.Add(optionsPanel)
 		
-		welcomeText = wx.StaticText(self.optionsPanel, label="Welcome!")
+		welcomeText = wx.StaticText(optionsPanel, label="Welcome!")
 		self.wrapperSizer.Add(self.optionsSizer, 
 		                      border=5, 
 							  flag=wx.TOP|wx.ALIGN_CENTRE_HORIZONTAL)
-							  
-		#self.optionsPanel.SetOwnBackgroundColour(wx.Colour(255, 0, 0))
-		
 		
 		#Fit window to size of sizer
 		self.wrapperSizer.SetSizeHints(self)
@@ -120,9 +119,14 @@ class Diamond(wx.Frame):
 		for option in self.BIOSproperties[event.GetString()]:
 			print(option)
 			if option["Type"] == "Check": #A checkbox option
-				pass
-				#Box to surround checkboxes
-				#tempStaticBox = wx.StaticBox(self.optionsSizer, label=option["Label"])
+				#Box/sizer to surround checkboxe
+				tempSizer = wx.StaticBoxSizer(wx.HORIZONTAL, self, option["Label"])
+				self.optionsSizer.Add(tempSizer, border=5, flag=wx.TOP)
+				
+				#Checkboxes
+				for checkbox in option["Options"]:
+					tempCheckBox = wx.CheckBox(self, label=checkbox)
+					tempSizer.Add(tempCheckBox)
 		
 		#Calling this forces the window to recalculate all sizes
 		# related to the sizer, making sure nothing "clips"
