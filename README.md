@@ -1,11 +1,11 @@
-# This Project (Codename: Diamond)
-## is a software that is under development that allows the user w/o complex knowledge on editing the PlayStation 1's BIOS ROM using a hex editor, to make changes into it's imagery and auditory files inside the ROM.
+# Diamond
+## Diamond allows the user, without complex knowledge of editing BIOS ROM files using a hex editor, to make changes into the PlayStation's imagery and auditory files inside the BIOS ROM.
 
-This includes:
+The program allows users to, among other things:
 
-- The color of the Spheres (at least the main one)
-- Color of Main Menu Gradience buttons
+- Change the colour of the spheres (at least the main one)
+- Change the colour of the main menu gradient buttons
 - Add custom VAG (Audio Format)
-- Add custom TIM (Image Format) into the logo, etc.
+- Add custom TIM (Image Format) into the logo
 
-Currently, This program is under development for now, as we are looking for developers currently it is written in Visual Basic 6 for concept purposes only (for now).
+Diamond is in active development and should not be expected to work properly. Proceed with caution!

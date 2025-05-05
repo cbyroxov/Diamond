@@ -1,2 +1,0 @@
-This project uses Visual Basic 6 although the language is outdated it is meant to be flexible and compatible on old hardware
-also the project has no code as it is under developement
