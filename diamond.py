@@ -86,8 +86,7 @@ class Diamond(wx.Frame):
 		categoryChoice = wx.Choice(categoryPanel, 
 								   choices=list(self.BIOSproperties.keys()),
 								   size=wx.Size(450, 25))
-		self.wrapperSizer.Add(categoryPanel, 
-		                      border=5, 
+		self.wrapperSizer.Add(categoryPanel, border=5, 
 							  flag=wx.TOP|wx.ALIGN_CENTRE_HORIZONTAL) #Flag aligns and adds margin on top
 
 		#Set an event handler for the category choice
@@ -101,9 +100,21 @@ class Diamond(wx.Frame):
 		self.optionsSizer.Add(optionsPanel)
 		
 		welcomeText = wx.StaticText(optionsPanel, label="Welcome!")
-		self.wrapperSizer.Add(self.optionsSizer, 
-		                      border=5, 
+		self.wrapperSizer.Add(self.optionsSizer, border=5, 
 							  flag=wx.TOP|wx.ALIGN_CENTRE_HORIZONTAL)
+							  
+		#Add "modify" button
+		#Maybe needs a better name
+		modifyButtonSizer = wx.BoxSizer(wx.HORIZONTAL)
+		modifyButton = wx.Button(self, label="Modify")
+		modifyButton.SetFont(wx.Font(wx.FontInfo(20)))
+		self.Bind(wx.EVT_BUTTON, lambda e: self.modify_BIOS(e), modifyButton)
+		
+		modifyButtonSizer.Add(modifyButton, border=5,
+							  flag=wx.TOP|wx.BOTTOM|wx.ALIGN_BOTTOM)
+							  
+		self.wrapperSizer.Add(modifyButtonSizer, proportion=1, border=5,
+		                      flag=wx.TOP|wx.BOTTOM|wx.ALIGN_CENTRE_HORIZONTAL)
 		
 		#Fit window to size of sizer
 		self.wrapperSizer.SetSizeHints(self)
@@ -166,6 +177,14 @@ class Diamond(wx.Frame):
 		
 		else:
 			raise ValueError(f"Attempted to update BIOS property of an unknown option type {extraData['Option']['Type']}.")
+			
+			
+	def modify_BIOS(self, event):
+		"""
+		Called whenever the user clicks the 'Modify' button to
+		inject their changes into the BIOS.
+		"""
+		print("Modify!")
 		
 		
 	def make_menu_bar(self):
