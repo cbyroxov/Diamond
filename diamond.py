@@ -68,7 +68,7 @@ class Diamond(wx.Frame):
 			"0x42000 - Main Sphere Colours": [
 				{
 					"Addrs":   ["42EE0", "42EE1", "42EE2"],
-					"Mods":    [b"FF", b"FF", b"FF"],
+					"Mods":    ["FF", "FF", "FF"],
 					"Label":   "Outer Main Sphere Colour",
 					"Type":    "Check",
 					"Choices": ["Red", "Green", "Blue"],
@@ -76,7 +76,7 @@ class Diamond(wx.Frame):
 				},
 				{
 					"Addrs":   ["42EE4", "42EE5", "42EE6"],
-					"Mods":    [b"FF", b"FF", b"FF"],
+					"Mods":    ["FF", "FF", "FF"],
 					"Label":   "Inner Main Sphere Colour",
 					"Type":    "Check",
 					"Choices": ["Red", "Green", "Blue"],
@@ -231,7 +231,7 @@ class Diamond(wx.Frame):
 				"0x42000 - Main Sphere Colours": [
 					{
 						"Addrs":   ["42EE0", "42EE1", "42EE2"],
-						"Mods":    [b"FF", b"FF", b"FF"],
+						"Mods":    ["FF", "FF", "FF"],
 						"Label":   "Outer Main Sphere Colour",
 						"Type":    "Check",
 						"Choices": ["Red", "Green", "Blue"],
@@ -239,7 +239,7 @@ class Diamond(wx.Frame):
 					},
 					{
 						"Addrs":   ["42EE4", "42EE5", "42EE6"],
-						"Mods":    [b"FF", b"FF", b"FF"],
+						"Mods":    ["FF", "FF", "FF"],
 						"Label":   "Inner Main Sphere Colour",
 						"Type":    "Check",
 						"Choices": ["Red", "Green", "Blue"],
@@ -273,7 +273,8 @@ class Diamond(wx.Frame):
 							#Once we get here, that means we're at the proper spot to modify
 							if option["Type"] == "Check":
 								if option["Values"][addrIndex] == wx.CHK_CHECKED:
-									writeBIOS.write(option["Mods"][addrIndex])
+									#Probably a better way to do this conversion, but oh well
+									writeBIOS.write(int(option["Mods"][addrIndex], 16).to_bytes())
 									readBIOS.read(1) #To make sure files don't fall out of sync
 								else:
 									writeBIOS.write(readBIOS.read(1))
