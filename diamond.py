@@ -29,41 +29,60 @@ class Diamond(wx.Frame):
 		self.BIOSproperties defines all the different things the
 		user can control about the BIOS.
 		
-		Each key in the dictionary defines a
-		"category" of options from which the user can
-		click through. This prevents every single options
+		Each key in the dictionary defines a "category" of options from 
+		which the user can click through. This prevents every single option
 		from being on-screen at once.
 		
-		The data inside each inner list defines the options that'll
-		be displayed on the window for the user to interact with.
+		The dictionaries inside each inner list define the options that'll
+		be displayed on the window for the user to interact with, as well
+		as stored data that will be used to appropriately modify the BIOS.
 		
-		ID      - Used by the program to identify what options are being set
-		Label   - Text displayed on the window for each option
-		Type    - The type of option it is (e.g. radio button, check button, text input, etc.)
-		Choices - What options are given to the user, if applicable
-		Values  - Keeps track of the actual values entered by the user
+		Each dictionary will have the following keys:
+			Addrs   - Used by the program to identify what addresses are being modified
+			Mods    - Says what values to swap into the address, if applicable
+			Label   - Text displayed on the window for each option
+			Type    - The type of option it is (e.g. radio button, check button, text input, etc.)
+			Choices - What options are given to the user, if applicable
+			Values  - Keeps track of the actual values entered by the user
+		
+		For check button options, "mods" specifies the value to set each
+		relevant address to if the checkbox is checked. For example, with the option
+		{
+			"Addrs":   ["42EE0", "42EE1", "42EE2"],
+			"Mods":    ["12", "34", "56"],
+			"Label":   "Outer Main Sphere Colour",
+			"Type":    "Check",
+			"Choices": ["Red", "Green", "Blue"],
+			"Values":  [wx.CHK_UNCHECKED, wx.CHK_UNCHECKED, wx.CHK_UNCHECKED]
+		},
+		checking the "Red" checkbox will set the value of address 42EE0 to 12, checking
+		the "Green" checkbox will set the value of address 42EE1 to 34, and checking the
+		"Blue" checkbox will set address 42EE2 to 56.
+		
+		IMPORTANT: the addresses in BIOSproperties must be ordered from smallest to
+		greatest for the modification code to work. So, modifications that happen
+		earlier in the BIOS file must be placed earlier in the dictionary.
+		
 		'''
 		self.BIOSproperties = {
 			"0x42000 - Main Sphere Colours": [
 				{
-					"ID":      "42EE0",
+					"Addrs":   ["42EE0", "42EE1", "42EE2"],
+					"Mods":    [b"FF", b"FF", b"FF"],
 					"Label":   "Outer Main Sphere Colour",
 					"Type":    "Check",
 					"Choices": ["Red", "Green", "Blue"],
 					"Values":  [wx.CHK_UNCHECKED, wx.CHK_UNCHECKED, wx.CHK_UNCHECKED]
 				},
 				{
-					"ID":      "42EE4",
+					"Addrs":   ["42EE4", "42EE5", "42EE6"],
+					"Mods":    [b"FF", b"FF", b"FF"],
 					"Label":   "Inner Main Sphere Colour",
 					"Type":    "Check",
 					"Choices": ["Red", "Green", "Blue"],
 					"Values":  [wx.CHK_UNCHECKED, wx.CHK_UNCHECKED, wx.CHK_UNCHECKED]
 				}
-			],
-			"Category 2": [],
-			"Category 3": [],
-			"Category 4": [],
-			"Category 5": []
+			]
 		}
 		
 		#Holds the name of the currently-selected category
@@ -190,7 +209,94 @@ class Diamond(wx.Frame):
 		Called whenever the user clicks the 'Modify' button to
 		inject their changes into the BIOS.
 		"""
-		print("Modify!")
+		#First, check to see if the user has provided files
+		if self.oldBIOS == None:
+			wx.lib.dialogs.alertDialog(message="No BIOS file provided to modify. \
+			Go to File > Open... to select a BIOS file.", title="No BIOS File Provided")
+		
+		elif self.newBIOS == None:
+			wx.lib.dialogs.alertDialog(message="A name for the modified BIOS file hasn't been given. \
+			Go to File > Save As... to choose a name for the modified BIOS file.", 
+			title="No Name Given for Modified BIOS")
+			
+		#Once we get here, attempt the modification!
+		else:
+			readBIOS = None
+			writeBIOS = None
+			try:
+				readBIOS = open(self.oldBIOS, "rb")
+				writeBIOS = open(self.newBIOS, "wb")
+				
+				'''
+				"0x42000 - Main Sphere Colours": [
+					{
+						"Addrs":   ["42EE0", "42EE1", "42EE2"],
+						"Mods":    [b"FF", b"FF", b"FF"],
+						"Label":   "Outer Main Sphere Colour",
+						"Type":    "Check",
+						"Choices": ["Red", "Green", "Blue"],
+						"Values":  [wx.CHK_UNCHECKED, wx.CHK_UNCHECKED, wx.CHK_UNCHECKED]
+					},
+					{
+						"Addrs":   ["42EE4", "42EE5", "42EE6"],
+						"Mods":    [b"FF", b"FF", b"FF"],
+						"Label":   "Inner Main Sphere Colour",
+						"Type":    "Check",
+						"Choices": ["Red", "Green", "Blue"],
+						"Values":  [wx.CHK_UNCHECKED, wx.CHK_UNCHECKED, wx.CHK_UNCHECKED]
+					}
+				]
+				'''
+				
+				#int("hex", 16)
+				
+				#Maximum number of bytes to copy at once.
+				#This was chosen arbitrarily and can safely be changed.
+				MAXCHUNK = 1024
+				
+				#Get the size of readBIOS
+				MAXPOS = readBIOS.seek(0, 2)
+				readBIOS.seek(0, 0)
+				
+				#Loop over all modified sections of the BIOS and change whatever is needed
+				for optionList in self.BIOSproperties.values():
+					for option in optionList:
+						for addrIndex, addr in enumerate(option["Addrs"]):
+							#Copy data from readBIOS to writeBIOS until we're
+							# at a section that needs to be modified
+							while readBIOS.tell() != int(addr, 16):
+								amountToCopy = 1
+								if int(addr, 16) - readBIOS.tell() >= MAXCHUNK:
+									amountToCopy = MAXCHUNK
+								writeBIOS.write(readBIOS.read(amountToCopy))
+								
+							#Once we get here, that means we're at the proper spot to modify
+							if option["Type"] == "Check":
+								if option["Values"][addrIndex] == wx.CHK_CHECKED:
+									writeBIOS.write(option["Mods"][addrIndex])
+									readBIOS.read(1) #To make sure files don't fall out of sync
+								else:
+									writeBIOS.write(readBIOS.read(1))
+									
+							else:
+								raise ValueError(f"Attempted to modify BIOS using unknown option type {option['Type']}.")
+								
+				#Once all the options have been accounted for,
+				# copy the rest of the BIOS file
+				while readBIOS.tell() < MAXPOS:
+					amountToCopy = 1
+					if MAXPOS - readBIOS.tell() >= MAXCHUNK:
+						amountToCopy = MAXCHUNK
+					writeBIOS.write(readBIOS.read(amountToCopy))
+				
+			except FileNotFoundError:
+				wx.lib.dialogs.alertDialog(message="Unable to read provided BIOS file. Check to make sure \
+				the file is in the correct location.", title="Unable to Read BIOS File")
+			finally:
+				if readBIOS != None:
+					readBIOS.close()
+				if writeBIOS != None:
+					writeBIOS.close()
 		
 		
 	def make_menu_bar(self):
@@ -199,7 +305,7 @@ class Diamond(wx.Frame):
 		"""
 		fileMenu = wx.Menu()
 		openFileItem = fileMenu.Append(wx.ID_OPEN)
-		saveFileAsItem = fileMenu.Append(wx.ID_SAVEAS)
+		replaceFileItem = fileMenu.Append(wx.ID_REPLACE)
 		
 		aboutMenu = wx.Menu()
 		aboutItem = aboutMenu.Append(wx.ID_ABOUT)
@@ -212,28 +318,32 @@ class Diamond(wx.Frame):
 		
 		self.Bind(wx.EVT_MENU, self.on_about, aboutItem)
 		self.Bind(wx.EVT_MENU, self.on_open_file, openFileItem)
-		self.Bind(wx.EVT_MENU, self.on_save_file, saveFileAsItem)
+		self.Bind(wx.EVT_MENU, self.on_replace_file, replaceFileItem)
 		
 		
 	def on_about(self, event):
 		"""
-		Called when the "about" menu option is clicked.
+		Called when the "About" menu option is clicked.
 		"""
 		wx.MessageBox("Diamond\nCreated by Cocoatwix.", "About Diamond", wx.OK|wx.ICON_INFORMATION)
 		
 		
 	def on_open_file(self, event):
 		"""
-		Called when the user selects "Open File".
+		Called when the user selects "Open...".
 		"""
-		self.oldBIOS = wx.lib.dialogs.openFileDialog()["paths"][0]
+		self.oldBIOS = wx.lib.dialogs.openFileDialog(title="Open BIOS File to Modify...").paths
+		if self.oldBIOS != None:
+			self.oldBIOS = self.oldBIOS[0]
 		
 		
-	def on_save_file(self, event):
+	def on_replace_file(self, event):
 		"""
-		Called when the user selects "Save File As".
+		Called when the user selects "Replace...".
 		"""
-		self.newBIOS = wx.lib.dialogs.saveFileDialog()["paths"][0]
+		self.newBIOS = wx.lib.dialogs.saveFileDialog(title="Choose BIOS File to Replace/Save As...").paths
+		if self.newBIOS != None:
+			self.newBIOS = self.newBIOS[0]
 		
 		
 if __name__ == "__main__":
