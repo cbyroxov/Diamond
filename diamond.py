@@ -12,6 +12,7 @@ Helpful resources used:
 """
 
 import wx
+import wx.lib.dialogs
 
 class Diamond(wx.Frame):
 	"""
@@ -69,6 +70,10 @@ class Diamond(wx.Frame):
 		# so that functions can utilize it.
 		self.currentCategory = None
 		
+		#Holds the paths to the BIOS files
+		self.oldBIOS = None
+		self.newBIOS = None
+		
 		#Wrapper sizer for everything
 		self.wrapperSizer = wx.BoxSizer(wx.VERTICAL)
 		self.SetSizer(self.wrapperSizer)
@@ -107,6 +112,7 @@ class Diamond(wx.Frame):
 		#Maybe needs a better name
 		modifyButtonSizer = wx.BoxSizer(wx.HORIZONTAL)
 		modifyButton = wx.Button(self, label="Modify")
+		modifyButton.SetMinClientSize(wx.Size(100, 66)) #Prevents the button from being squished
 		modifyButton.SetFont(wx.Font(wx.FontInfo(20)))
 		self.Bind(wx.EVT_BUTTON, lambda e: self.modify_BIOS(e), modifyButton)
 		
@@ -120,7 +126,7 @@ class Diamond(wx.Frame):
 		self.wrapperSizer.SetSizeHints(self)
 		
 		#Add menu bar
-		#self.make_menu_bar()
+		self.make_menu_bar()
 		
 		
 	def category_change(self, event):
@@ -191,18 +197,47 @@ class Diamond(wx.Frame):
 		"""
 		Makes the menu bar for the application.
 		"""
-		raise NotImplementedError("Diamond's menu bar has not yet been implemented.")
+		fileMenu = wx.Menu()
+		openFileItem = fileMenu.Append(wx.ID_OPEN)
+		saveFileAsItem = fileMenu.Append(wx.ID_SAVEAS)
+		
+		aboutMenu = wx.Menu()
+		aboutItem = aboutMenu.Append(wx.ID_ABOUT)
+		
+		menuBar = wx.MenuBar()
+		menuBar.Append(fileMenu, "&File")
+		menuBar.Append(aboutMenu, "&About")
+		
+		self.SetMenuBar(menuBar)
+		
+		self.Bind(wx.EVT_MENU, self.on_about, aboutItem)
+		self.Bind(wx.EVT_MENU, self.on_open_file, openFileItem)
+		self.Bind(wx.EVT_MENU, self.on_save_file, saveFileAsItem)
 		
 		
 	def on_about(self, event):
 		"""
 		Called when the "about" menu option is clicked.
 		"""
-		ex.MessageBox("About info goes here.")
+		wx.MessageBox("Diamond\nCreated by Cocoatwix.", "About Diamond", wx.OK|wx.ICON_INFORMATION)
+		
+		
+	def on_open_file(self, event):
+		"""
+		Called when the user selects "Open File".
+		"""
+		self.oldBIOS = wx.lib.dialogs.openFileDialog()["paths"][0]
+		
+		
+	def on_save_file(self, event):
+		"""
+		Called when the user selects "Save File As".
+		"""
+		self.newBIOS = wx.lib.dialogs.saveFileDialog()["paths"][0]
 		
 		
 if __name__ == "__main__":
 	app = wx.App()
-	frame = Diamond(None, title="Diamond", size=(800, 500))
+	frame = Diamond(None, title="Diamond")
 	frame.Show()
 	app.MainLoop()
