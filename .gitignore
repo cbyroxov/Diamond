@@ -1,2 +1,5 @@
 #Don't store binary files
 *.bin
+
+#Don't store settings file
+settings.json

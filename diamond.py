@@ -11,6 +11,8 @@ Helpful resources used:
 "Layout management in wxPython" by Jan Bodnar: https://zetcode.com/wxpython/layout/
 """
 
+import json
+
 import wx
 import wx.lib.dialogs
 
@@ -118,6 +120,9 @@ class Diamond(wx.Frame):
 		#Holds the paths to the BIOS files
 		self.oldBIOS = None
 		self.newBIOS = None
+		
+		#Read from settings.json, if it exists
+		self.load_settings()
 		
 		#Wrapper sizer for everything
 		self.wrapperSizer = wx.BoxSizer(wx.VERTICAL)
@@ -245,6 +250,11 @@ class Diamond(wx.Frame):
 			Go to File > Save As... to choose a name for the modified BIOS file.", 
 			title="No Name Given for Modified BIOS")
 			
+		elif self.oldBIOS == self.newBIOS:
+			wx.lib.dialogs.alertDialog(message="The modified BIOS file is the same as the BIOS file \
+			to read from. Please choose a different file to output BIOS modifications to.",
+			title="Modified BIOS Same As Source BIOS")
+			
 		#Once we get here, attempt the modification!
 		else:
 			readBIOS = None
@@ -252,27 +262,6 @@ class Diamond(wx.Frame):
 			try:
 				readBIOS = open(self.oldBIOS, "rb")
 				writeBIOS = open(self.newBIOS, "wb")
-				
-				'''
-				"0x42000 - Main Sphere Colours": [
-					{
-						"Addrs":   ["42EE0", "42EE1", "42EE2"],
-						"Mods":    ["FF", "FF", "FF"],
-						"Label":   "Outer Main Sphere Colour",
-						"Type":    "Check",
-						"Choices": ["Red", "Green", "Blue"],
-						"Values":  [wx.CHK_UNCHECKED, wx.CHK_UNCHECKED, wx.CHK_UNCHECKED]
-					},
-					{
-						"Addrs":   ["42EE4", "42EE5", "42EE6"],
-						"Mods":    ["FF", "FF", "FF"],
-						"Label":   "Inner Main Sphere Colour",
-						"Type":    "Check",
-						"Choices": ["Red", "Green", "Blue"],
-						"Values":  [wx.CHK_UNCHECKED, wx.CHK_UNCHECKED, wx.CHK_UNCHECKED]
-					}
-				]
-				'''
 				
 				#Maximum number of bytes to copy at once.
 				#This was chosen arbitrarily and can safely be changed.
@@ -296,8 +285,7 @@ class Diamond(wx.Frame):
 									
 							else:
 								raise ValueError(f"Attempted to modify BIOS using unknown option type {option['Type']}.")
-								
-				print(modifications)
+
 				#Now, with all modifications accounted for, actually
 				# modify the BIOS
 				for mod in modifications:
@@ -332,8 +320,10 @@ class Diamond(wx.Frame):
 		Makes the menu bar for the application.
 		"""
 		fileMenu = wx.Menu()
-		openFileItem = fileMenu.Append(wx.ID_OPEN)
-		replaceFileItem = fileMenu.Append(wx.ID_REPLACE)
+		openFileItem     = fileMenu.Append(-1, "Open BIOS File...\tCtrl-O")
+		replaceFileItem  = fileMenu.Append(-1, "Save Modified BIOS File As...\tCtrl-H")
+		fileMenu.AppendSeparator()
+		saveSettingsItem = fileMenu.Append(-1, "Save Settings\tCtrl-S")
 		
 		aboutMenu = wx.Menu()
 		aboutItem = aboutMenu.Append(wx.ID_ABOUT)
@@ -347,6 +337,7 @@ class Diamond(wx.Frame):
 		self.Bind(wx.EVT_MENU, self.on_about, aboutItem)
 		self.Bind(wx.EVT_MENU, self.on_open_file, openFileItem)
 		self.Bind(wx.EVT_MENU, self.on_replace_file, replaceFileItem)
+		self.Bind(wx.EVT_MENU, self.on_save_settings, saveSettingsItem)
 		
 		
 	def on_about(self, event):
@@ -358,7 +349,7 @@ class Diamond(wx.Frame):
 		
 	def on_open_file(self, event):
 		"""
-		Called when the user selects "Open...".
+		Called when the user wants to choose the BIOS file to use.
 		"""
 		self.oldBIOS = wx.lib.dialogs.openFileDialog(title="Open BIOS File to Modify...").paths
 		if self.oldBIOS != None:
@@ -367,11 +358,48 @@ class Diamond(wx.Frame):
 		
 	def on_replace_file(self, event):
 		"""
-		Called when the user selects "Replace...".
+		Called when the user wants to give the modified BIOS file a name.
 		"""
 		self.newBIOS = wx.lib.dialogs.saveFileDialog(title="Choose BIOS File to Replace/Save As...").paths
 		if self.newBIOS != None:
 			self.newBIOS = self.newBIOS[0]
+			
+			
+	def on_save_settings(self, event):
+		"""
+		Called whenever the user would like to save their settings.
+		"""
+		settingsObject = {}
+		
+		if self.oldBIOS == None:
+			settingsObject["oldBIOS"] = ""
+		else:
+			settingsObject["oldBIOS"] = self.oldBIOS
+			
+		if self.newBIOS == None:
+			settingsObject["newBIOS"] = ""
+		else:
+			settingsObject["newBIOS"] = self.newBIOS
+			
+		with open("settings.json", "w") as settingsFile:
+			json.dump(settingsObject, settingsFile, indent="\t")
+			
+			
+	def load_settings(self):
+		"""
+		Called on frame initialization to load files, if they exist.
+		"""
+		try:
+			with open("settings.json", "r") as settingsFile:
+				settingsObject = json.load(settingsFile)
+				
+				self.oldBIOS = settingsObject["oldBIOS"]
+				self.newBIOS = settingsObject["newBIOS"]
+				
+		except FileNotFoundError:
+			#Probably a more elegant way to do this using
+			# pathlib, but this is good enough for now.
+			print("settings.json file not found. Continuing with default settings.")
 		
 		
 if __name__ == "__main__":
