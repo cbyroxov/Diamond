@@ -273,29 +273,24 @@ class Diamond(wx.Frame):
 					tempBigSizer.Add(tempSmallSizer, border=5, flag=wx.TOP|wx.BOTTOM)
 					
 					self.Bind(wx.EVT_TEXT, 
-					          lambda e, f={"TextCtrl": tempTextCtrl, "MinValue": option["Bounds"][choiceIndex]["Min"]}: 
-							  self.manage_text_entry(e, f), tempTextCtrl)
-					
-					
-			'''
-			"0x28000 - Logo Positioning": [
-				{
-					"Addrs":   ["289FC", "289FD", "28A0C", "28A0D"],
-					"Bounds":  [{"Min": "00", "Max": "FF"},
-								{"Min": "00", "Max": "FF"},
-								{"Min": "00", "Max": "FF"},
-								{"Min": "00", "Max": "FF"}],
-					"Label":   "Sony Logo's Position",
-					"Type":    "Range",
-					"Choices": ["Y Position (1/2)", "Y Position (2/2)", "X Position (1/2)", "X Position (2/2)"],
-					"Values":  ["00", "00", "00", "00"]
-				}
-			],
-			'''
-					
-				
-			
-		
+					          lambda e, f={"TextCtrl": tempTextCtrl, 
+							               "Slider": tempSlider, 
+										   "MinValue": option["Bounds"][choiceIndex]["Min"],
+										   "Option": option,
+										   "OptionIndex": optionIndex,
+										   "ChoiceIndex": choiceIndex}: 
+							  self.manage_text_entry(e, f), 
+							  tempTextCtrl)
+							  
+					self.Bind(wx.EVT_SCROLL,
+							  lambda e, f={"Slider": tempSlider,
+										   "TextCtrl": tempTextCtrl,
+							               "Option": option,
+										   "OptionIndex": optionIndex,
+										   "ChoiceIndex": choiceIndex}:
+							  self.manage_slider(e, f),
+							  tempSlider)
+
 		#Calling this forces the window to recalculate all sizes
 		# related to the sizer, making sure nothing "clips"
 		self.wrapperSizer.Layout()
@@ -314,6 +309,9 @@ class Diamond(wx.Frame):
 				self.BIOSproperties[self.currentCategory][extraData["OptionIndex"]]["Values"][extraData["CheckBoxIndex"]] = wx.CHK_CHECKED
 			else:
 				self.BIOSproperties[self.currentCategory][extraData["OptionIndex"]]["Values"][extraData["CheckBoxIndex"]] = wx.CHK_UNCHECKED
+				
+		elif extraData["Option"]["Type"] == "Range":
+			self.BIOSproperties[self.currentCategory][extraData["OptionIndex"]]["Values"][extraData["ChoiceIndex"]] = extraData["TextCtrl"].GetValue()
 		
 		else:
 			raise ValueError(f"Attempted to update BIOS property of an unknown option type {extraData['Option']['Type']}.")
@@ -367,8 +365,27 @@ class Diamond(wx.Frame):
 								if option["Values"][addrIndex] == wx.CHK_CHECKED:
 									insert_by_sorted_key(modifications, {"Addr": addr, "Value": option["Mods"][addrIndex]}, "Addr")
 									
+							elif option["Type"] == "Range":
+								insert_by_sorted_key(modifications, {"Addr": addr, "Value": option["Values"][addrIndex]}, "Addr")
+									
 							else:
 								raise ValueError(f"Attempted to modify BIOS using unknown option type {option['Type']}.")
+								
+							'''
+							"0x28000 - Logo Positioning": [
+								{
+									"Addrs":   ["289FC", "289FD", "28A0C", "28A0D"],
+									"Bounds":  [{"Min": "00", "Max": "FF"},
+												{"Min": "00", "Max": "FF"},
+												{"Min": "00", "Max": "FF"},
+												{"Min": "00", "Max": "FF"}],
+									"Label":   "Sony Logo's Position",
+									"Type":    "Range",
+									"Choices": ["Y Position (1/2)", "Y Position (2/2)", "X Position (1/2)", "X Position (2/2)"],
+									"Values":  ["00", "00", "00", "00"]
+								}
+							],
+							'''
 
 				#Now, with all modifications accounted for, actually
 				# modify the BIOS
@@ -437,7 +454,33 @@ class Diamond(wx.Frame):
 				extra["TextCtrl"].Undo()
 				break
 				
+		#Now, we need to update the relevant slider
+		currentEntry = extra["TextCtrl"].GetValue()
+		if currentEntry == "":
+			currentEntry = 0
+		else:
+			currentEntry = int(currentEntry, 16)
+			
+		extra["Slider"].SetValue(currentEntry)
 		
+		#Finally, update the stored value for this option
+		# so it's reflected in the modified BIOS
+		self.update_BIOS_property(None, extra)
+		
+		
+	def manage_slider(self, event, extra):
+		"""
+		Called whenever a Slider needs to be managed.
+		"""
+		#First, update the associated TextCtrl
+		hexValue = hex(extra["Slider"].GetValue())[2:]
+		if len(hexValue) == 1:
+			hexValue = "0" + hexValue
+		extra["TextCtrl"].Replace(0, 2, hexValue)
+		
+		#Now, update the stored value so that
+		# changes are reflected in the modified BIOS
+		self.update_BIOS_property(None, extra)
 		
 		
 	def on_about(self, event):
