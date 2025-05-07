@@ -258,32 +258,34 @@ class Diamond(wx.Frame):
 				MAXPOS = readBIOS.seek(0, 2)
 				readBIOS.seek(0, 0)
 				
-				#Loop over all modified sections of the BIOS and change whatever is needed
+				#Now, perform some preprocessing so that we know beforehand
+				# which values need to be modified in the BIOS.
+				modifications = []
+				
+				#Loop over all modified sections of the BIOS and record whatever changes are needed
 				for optionList in self.BIOSproperties.values():
 					for option in optionList:
 						for addrIndex, addr in enumerate(option["Addrs"]):
-							#Copy data from readBIOS to writeBIOS until we're
-							# at a section that needs to be modified
-							while readBIOS.tell() != int(addr, 16):
-								amountToCopy = 1
-								if int(addr, 16) - readBIOS.tell() >= MAXCHUNK:
-									amountToCopy = MAXCHUNK
-								writeBIOS.write(readBIOS.read(amountToCopy))
-								
-							#Once we get here, that means we're at the proper spot to modify
 							if option["Type"] == "Check":
 								if option["Values"][addrIndex] == wx.CHK_CHECKED:
-									#Probably a better way to do this conversion, but oh well
-									writeBIOS.write(int(option["Mods"][addrIndex], 16).to_bytes())
-									readBIOS.read(1) #To make sure files don't fall out of sync
-								else:
-									writeBIOS.write(readBIOS.read(1))
+									modifications.append({"Addr": addr, "Value": option["Mods"][addrIndex]})
 									
 							else:
 								raise ValueError(f"Attempted to modify BIOS using unknown option type {option['Type']}.")
 								
-				#Once all the options have been accounted for,
-				# copy the rest of the BIOS file
+				#Now, with all modifications accounted for, actually
+				# modify the BIOS
+				for mod in modifications:
+					while readBIOS.tell() < int(mod["Addr"], 16):
+						amountToCopy = 1
+						if int(mod["Addr"], 16) - readBIOS.tell() >= MAXCHUNK:
+							amountToCopy = MAXCHUNK
+						writeBIOS.write(readBIOS.read(amountToCopy))
+					
+					writeBIOS.write(int(mod["Value"], 16).to_bytes())
+					readBIOS.read(1) #Keeps the two files in sync
+					
+				#Now, copy the rest of the file
 				while readBIOS.tell() < MAXPOS:
 					amountToCopy = 1
 					if MAXPOS - readBIOS.tell() >= MAXCHUNK:
