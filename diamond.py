@@ -14,6 +14,37 @@ Helpful resources used:
 import wx
 import wx.lib.dialogs
 
+
+def insert_by_sorted_key(listToModify, dictToAdd, keyToSortBy):
+	"""
+	Used to insert a dictionary into a list of
+	similar dictionaries while keeping the list
+	sorted based on 
+	"""
+	start = 0
+	end = len(listToModify)-1
+	currPos = (start+end)//2
+	
+	if end == -1:
+		listToModify.append(dictToAdd)
+		return
+	
+	#Perform binary search
+	while start != end:
+		if listToModify[currPos][keyToSortBy] >= dictToAdd[keyToSortBy]:
+			end = currPos - 1 if end == currPos else currPos
+		else:
+			start = currPos + 1 if start == currPos else currPos
+			
+		currPos = (start+end)//2
+
+	#Once here, determine if dictToAdd is before or after currPos
+	if listToModify[currPos][keyToSortBy] >= dictToAdd[keyToSortBy]:
+		listToModify.insert(currPos, dictToAdd)
+	else:
+		listToModify.insert(currPos+1, dictToAdd)
+
+
 class Diamond(wx.Frame):
 	"""
 	The main window for Diamond.
@@ -58,11 +89,6 @@ class Diamond(wx.Frame):
 		checking the "Red" checkbox will set the value of address 42EE0 to 12, checking
 		the "Green" checkbox will set the value of address 42EE1 to 34, and checking the
 		"Blue" checkbox will set address 42EE2 to 56.
-		
-		IMPORTANT: the addresses in BIOSproperties must be ordered from smallest to
-		greatest for the modification code to work. So, modifications that happen
-		earlier in the BIOS file must be placed earlier in the dictionary.
-		
 		'''
 		self.BIOSproperties = {
 			"0x42000 - Main Sphere Colours": [
@@ -248,8 +274,6 @@ class Diamond(wx.Frame):
 				]
 				'''
 				
-				#int("hex", 16)
-				
 				#Maximum number of bytes to copy at once.
 				#This was chosen arbitrarily and can safely be changed.
 				MAXCHUNK = 1024
@@ -268,11 +292,12 @@ class Diamond(wx.Frame):
 						for addrIndex, addr in enumerate(option["Addrs"]):
 							if option["Type"] == "Check":
 								if option["Values"][addrIndex] == wx.CHK_CHECKED:
-									modifications.append({"Addr": addr, "Value": option["Mods"][addrIndex]})
+									insert_by_sorted_key(modifications, {"Addr": addr, "Value": option["Mods"][addrIndex]}, "Addr")
 									
 							else:
 								raise ValueError(f"Attempted to modify BIOS using unknown option type {option['Type']}.")
 								
+				print(modifications)
 				#Now, with all modifications accounted for, actually
 				# modify the BIOS
 				for mod in modifications:
