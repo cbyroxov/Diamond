@@ -72,14 +72,14 @@ class Diamond(wx.Frame):
 		
 		Each dictionary will have the following keys:
 			Addrs   - Used by the program to identify what addresses are being modified
-			Mods    - Says what values to swap into the address, if applicable
+			Mods    - For "Check" type. Says what values to swap into the address when checkbox is checked.
+			Bounds  - For "Range" type. Defines the range of values that can be entered by the user to set the address values to.
 			Label   - Text displayed on the window for each option
 			Type    - The type of option it is (e.g. radio button, check button, text input, etc.)
-			Choices - What options are given to the user, if applicable
+			Choices - What options are given to the user
 			Values  - Keeps track of the actual values entered by the user
 		
-		For check button options, "mods" specifies the value to set each
-		relevant address to if the checkbox is checked. For example, with the option
+		As an example, with the checkbox option
 		{
 			"Addrs":   ["42EE0", "42EE1", "42EE2"],
 			"Mods":    ["12", "34", "56"],
@@ -91,8 +91,39 @@ class Diamond(wx.Frame):
 		checking the "Red" checkbox will set the value of address 42EE0 to 12, checking
 		the "Green" checkbox will set the value of address 42EE1 to 34, and checking the
 		"Blue" checkbox will set address 42EE2 to 56.
+		
+		As another example, for the range option, 
+		{
+			"Addrs":   ["289FC", "289FD", "28A0C", "28A0D"],
+			"Bounds":  [{"Min": "00", "Max": "11"},
+						{"Min": "22", "Max": "33"},
+						{"Min": "44", "Max": "55"},
+						{"Min": "66", "Max": "77"}],
+			"Label":   "Sony Logo's Position",
+			"Type":    "Range",
+			"Choices": ["Y Position (1/2)", "Y Position (2/2)", "X Position (1/2)", "X Position (2/2)"],
+			"Values":  ["00", "22", "45", "70"]
+		},
+		the "Y Position (1/2)" slider can set the value of address 289FC from 00 to 11 and has a default value of 00. The
+		"Y Position (2/2)" slider can set the value of address 289FD from 22 to 33 and has a default value of 22. The
+		"X Position (1/2)" slider can set the value of address 28A0C from 44 to 55 and has a default value of 45. Finally, the
+		"X Position (2/2)" slider can set the value of address 28A0D from 66 to 77 and has a default value of 70.
 		'''
 		self.BIOSproperties = {
+			"0x28000 - Logo Positioning": [
+				{
+					"Addrs":   ["289FC", "289FD", "28A0C", "28A0D"],
+					"Bounds":  [{"Min": "00", "Max": "FF"},
+								{"Min": "00", "Max": "FF"},
+								{"Min": "00", "Max": "FF"},
+								{"Min": "00", "Max": "FF"}],
+					"Label":   "Sony Logo's Position",
+					"Type":    "Range",
+					"Choices": ["Y Position (1/2)", "Y Position (2/2)", "X Position (1/2)", "X Position (2/2)"],
+					"Values":  ["00", "00", "00", "00"]
+				}
+			],
+			
 			"0x42000 - Main Sphere Colours": [
 				{
 					"Addrs":   ["42EE0", "42EE1", "42EE2"],
@@ -210,7 +241,60 @@ class Diamond(wx.Frame):
 						tempCheckBox
 					)
 					
-					tempSizer.Add(tempCheckBox)
+					tempSizer.Add(tempCheckBox, border=15, flag=wx.RIGHT)
+			
+			elif option["Type"] == "Range": #A slider option
+				#Box/sizer to surround checkboxes
+				tempBigSizer = wx.StaticBoxSizer(wx.VERTICAL, self, option["Label"])
+				self.optionsSizer.Add(tempBigSizer, border=5, flag=wx.TOP)
+				
+				#The actual sliders
+				for choiceIndex, choice in enumerate(option["Choices"]):
+					tempSmallSizer = wx.BoxSizer(wx.HORIZONTAL)
+					
+					#Add label text for each slider
+					tempLabelPanel = wx.Panel(self)
+					tempSmallSizer.Add(tempLabelPanel, border=15, flag=wx.RIGHT)
+					tempLabelText = wx.StaticText(tempLabelPanel, label=choice)
+					
+					#Add Slider
+					tempSlider = wx.Slider(self, value=int(option["Values"][choiceIndex], 16),
+					                       minValue=int(option["Bounds"][choiceIndex]["Min"], 16),
+										   maxValue=int(option["Bounds"][choiceIndex]["Max"], 16),
+										   size=wx.Size(200, 25))
+					tempSmallSizer.Add(tempSlider, border=5, flag=wx.RIGHT)
+					
+					#Add textbox holding the slider's value
+					tempTextCtrl = wx.TextCtrl(self, value=option["Values"][choiceIndex],
+					                           size=wx.Size(25, 20))
+					tempTextCtrl.SetMaxLength(2)
+					tempSmallSizer.Add(tempTextCtrl, border=5, flag=wx.RIGHT)
+					
+					tempBigSizer.Add(tempSmallSizer, border=5, flag=wx.TOP|wx.BOTTOM)
+					
+					self.Bind(wx.EVT_TEXT, 
+					          lambda e, f={"TextCtrl": tempTextCtrl, "MinValue": option["Bounds"][choiceIndex]["Min"]}: 
+							  self.manage_text_entry(e, f), tempTextCtrl)
+					
+					
+			'''
+			"0x28000 - Logo Positioning": [
+				{
+					"Addrs":   ["289FC", "289FD", "28A0C", "28A0D"],
+					"Bounds":  [{"Min": "00", "Max": "FF"},
+								{"Min": "00", "Max": "FF"},
+								{"Min": "00", "Max": "FF"},
+								{"Min": "00", "Max": "FF"}],
+					"Label":   "Sony Logo's Position",
+					"Type":    "Range",
+					"Choices": ["Y Position (1/2)", "Y Position (2/2)", "X Position (1/2)", "X Position (2/2)"],
+					"Values":  ["00", "00", "00", "00"]
+				}
+			],
+			'''
+					
+				
+			
 		
 		#Calling this forces the window to recalculate all sizes
 		# related to the sizer, making sure nothing "clips"
@@ -338,6 +422,22 @@ class Diamond(wx.Frame):
 		self.Bind(wx.EVT_MENU, self.on_open_file, openFileItem)
 		self.Bind(wx.EVT_MENU, self.on_replace_file, replaceFileItem)
 		self.Bind(wx.EVT_MENU, self.on_save_settings, saveSettingsItem)
+		
+		
+	def manage_text_entry(self, event, extra):
+		"""
+		Called whenever a TextCtrl needs to be managed.
+		"""
+		#This makes sure no invalid characters are entered
+		#Sloppy, but it works
+		currentEntry = extra["TextCtrl"].GetValue()
+		for c in currentEntry:
+			if c not in ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", 
+					 "A", "a", "B", "b", "C", "c", "D", "d", "E", "e", "F", "f"]:
+				extra["TextCtrl"].Undo()
+				break
+				
+		
 		
 		
 	def on_about(self, event):
