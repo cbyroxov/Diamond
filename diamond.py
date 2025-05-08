@@ -524,6 +524,13 @@ class Diamond(wx.Frame):
 		else:
 			settingsObject["newBIOS"] = self.newBIOS
 			
+		#Now, store all of the user's given settings
+		for option in self.BIOSproperties.keys():
+			settingsObject[option] = {}
+			for panel in self.BIOSproperties[option]:
+				settingsObject[option][panel["Label"]] = panel["Values"]
+			
+		#Actually save the settings
 		with open("settings.json", "w") as settingsFile:
 			json.dump(settingsObject, settingsFile, indent="\t")
 			
@@ -538,6 +545,12 @@ class Diamond(wx.Frame):
 				
 				self.oldBIOS = settingsObject["oldBIOS"]
 				self.newBIOS = settingsObject["newBIOS"]
+				
+				#Now, load all the user's settings
+				for option in settingsObject.keys():
+					if option not in ["oldBIOS", "newBIOS"]:
+						for panelIndex, panel in enumerate(self.BIOSproperties[option]):
+							self.BIOSproperties[option][panelIndex]["Values"] = settingsObject[option][panel["Label"]]
 				
 		except FileNotFoundError:
 			#Probably a more elegant way to do this using
